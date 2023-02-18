@@ -1,0 +1,1 @@
+export const sound = new Audio('./assets/sound.wav')

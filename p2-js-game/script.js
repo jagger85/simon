@@ -1,20 +1,5 @@
-//Init
-const box1 = document.createElement('div')
-const box2 = document.createElement('div')
-const box3 = document.createElement('div')
-const box4 = document.createElement('div')
-const shape = 'border:1px solid black; width:100px;height:100px;'
-
-const start = document.createElement('button')
-start.innerText = 'START'
-const reset = document.createElement('button')
-reset.innerText = 'RESET'
-
-box1.style.cssText = shape
-box2.style.cssText = shape
-box3.style.cssText = shape
-box4.style.cssText = shape
-
+import {box1,box2,box3,box4,start,reset} from './models.js'
+import {sound} from './sound.js'
 document.getElementById('main').appendChild(box1)
 document.getElementById('main').appendChild(box2)
 document.getElementById('main').appendChild(box3)
@@ -24,8 +9,8 @@ document.getElementById('main').appendChild(reset)
 
 const sequence = [];
 const velocity = 0.5;
+start.onclick = console.log('1')
 
-start.onclick(startGame)
 
 function startGame(){
 
