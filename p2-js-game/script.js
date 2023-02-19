@@ -1,26 +1,31 @@
-import {box1,box2,box3,box4,start,reset} from './models.js'
 import {sound} from './sound.js'
-document.getElementById('main').appendChild(box1)
-document.getElementById('main').appendChild(box2)
-document.getElementById('main').appendChild(box3)
-document.getElementById('main').appendChild(box4)
-document.getElementById('main').appendChild(start)
-document.getElementById('main').appendChild(reset)
+import {init} from './view.js'
+import {box1,box2,box3,box4} from './models.js'
 
 const sequence = [];
 const velocity = 0.5;
-start.onclick = console.log('1')
+const boxes = [box1,box2,box3,box4]
+
+init()
+startSequence(createSequence(),2)
 
 
 function startGame(){
-
+    box2.activate(2)
 }
 
 function createSequence(steps){
-    return sequence = [1,3,4,3,2]
+    return [1,3,3,2]
 }
 
 function startSequence(sequence,velocity){
+
+    // sequence.forEach((e,i)=>{
+    //     setTimeout(()=>{
+    //         boxes[i].activate(velocity)
+    //     },velocity*1000)
+    // })
+
 
 }
 
