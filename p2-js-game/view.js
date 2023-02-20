@@ -1,4 +1,4 @@
-import {box1,box2,box3,box4,start,reset} from './models.js'
+import {box1,box2,box3,box4,start,reset} from './models/models.js'
 
 export function init(){
     document.getElementById('main').appendChild(box1)

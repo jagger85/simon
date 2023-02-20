@@ -1,12 +1,13 @@
 import {sound} from './sound.js'
 import {init} from './view.js'
-import {box1,box2,box3,box4,start,reset} from './models.js'
-
-const sequence = [];
-const userSequence = [];
-const velocity = 0.5;
+import {box1,box2,box3,box4,start,reset} from './models/models.js'
+let state =''
+let sequence = [];
+let userSequence = [];
+let velocity = 1.2;
 const boxes = [box1,box2,box3,box4]
-
+let userSteps = 0;
+let steps = 4;
 
 /*
 /   Initialize the interface
@@ -17,31 +18,35 @@ init()
 /   Event listeners
 */
 start.addEventListener('click',()=>{
-    startSequence(createSequence(),2)
+    startGame()
 })
 
 reset.addEventListener('click',()=>{
     console.log(userSequence)
 })
 
-let input = document.querySelector('#main').addEventListener('click',(e)=>{
+document.querySelector('#main').addEventListener('click',(e)=>{
     if(e.target.className == 'box'){
-        console.log('box clicked')
-        userSequence.push(+e.target.id)
-        return +e.target.id
-    }
-})
+         readUserInput(sequence,+e.target.id)
+     }
+ })
 
 /*
 /   Game logic
 */
 
 function startGame(){
-    box2.activate(2)
+    state = 'showing sequence'
+    startSequence(createSequence(),velocity)
 }
 
-function createSequence(steps){
-    return [1,3,3,2]
+function createSequence(){
+    sequence = []
+    for(let i=0; i<steps;i++){
+        sequence.push(Math.floor(Math.random()*3))
+    }
+    console.log(sequence)
+    return sequence;
 }
 
 function startSequence(sequence,velocity){
@@ -50,7 +55,9 @@ function startSequence(sequence,velocity){
 
     function step(sequence,velocity){
 
-    if(sequence[n]==undefined)finishGame();
+    if(sequence[n]==undefined){
+        state = 'reading'
+    }
     else{
         boxes[sequence[n]].activate()
     setTimeout(()=>{
@@ -62,27 +69,42 @@ function startSequence(sequence,velocity){
         
     },velocity*1000)
     }}
+   
 }
 
-function readUserInput(sequence,i){
-
-    let userInput = new Promise((resolve,reject)=>{
-        if(input == 1){
-            resolve('ok')
-        }else{
-            reject('bad')
+function readUserInput(sequence,input){
+    if(state == 'reading'){
+    if(input == sequence[userSteps]){
+        userSteps++
+        console.log('good input')
+        if(sequence[userSteps]==undefined){
+            console.log('level finished')
+            levelUp();
         }
-    })
+    }else{
+        console.log('wrong input')
+        finishGame()
+    }
+    }
+}
 
-    userInput.then((message) =>{
-        console.log(message)
-    }).catch((message)=>{
-        console.log(message)
-    })
+function levelUp(){
+    userSteps = 0;
+    steps +=1;
+    velocity -= 0.1;
+    console.log('leveling up')
+    setTimeout(()=>{
+        startSequence(createSequence(),velocity)
+    },3000)
 
 }
 
 function finishGame(){
-    console.log('Game Finished')
+
+    console.log('Game Finished Level: ' + (steps-3))
+    userSteps =0;
+    steps = 4;
+    velocity = 1.2;
+    
 }
 
