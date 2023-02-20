@@ -1,0 +1,126 @@
+@font-face {
+  font-family: holye;
+  src: url('./assets/Hoyle.ttf');
+}
+
+*{
+    box-sizing: border-box;
+}
+
+:root{
+ --size:100px;
+ --controler-size:2.3;
+ --box-size:1.5
+}
+
+body {
+    background-color: grey;
+}
+main{
+  display:flex;
+  justify-content: center;
+}
+
+.simon-container{
+    background-image: url('./assets/plastic.png');
+    width: calc(var(--size)*6);
+    height: calc(var(--size)*6);
+    border-radius: 50%;
+    position: relative;
+    background-color: hsl(0,0%,90%);
+    box-shadow: inset hsla(0,0%,15%,  1) 0  0px 0px 4px, /* border */
+      inset hsla(0,0%,15%, .8) 0 -1px 5px 4px, /* soft SD */
+      inset hsla(0,0%,0%, .25) 0 -1px 0px 7px, /* bottom SD */
+      hsla(0,0%, 0%,.15) 0 -5px 6px 4px; /* outer SD */
+    transition: color .2s;
+}
+
+.metal {
+    color: hsla(0,0%,20%,1);
+    text-shadow: hsla(0,0%,40%,.5) 0 -1px 0, hsla(0,0%,100%,.6) 0 2px 1px;
+    
+    background-color: hsl(0,0%,90%);
+    box-shadow: inset hsla(0,0%,15%,  1) 0  0px 0px 4px, /* border */
+      inset hsla(0,0%,15%, .8) 0 -1px 5px 4px, /* soft SD */
+      inset hsla(0,0%,0%, .25) 0 -1px 0px 7px, /* bottom SD */
+      inset hsla(0,0%,100%,.7) 0  2px 1px 7px, /* top HL */
+      hsla(0,0%, 0%,.15) 0 -5px 6px 4px; /* outer SD */
+    transition: color .2s;
+  }
+  .radial.metal {
+    line-height: 160px;
+    background-image: -webkit-radial-gradient(  50%   0%,  8% 50%, hsla(0,0%,100%,.5) 0%, hsla(0,0%,100%,0) 100%),
+      -webkit-radial-gradient(  50% 100%, 12% 50%, hsla(0,0%,100%,.6) 0%, hsla(0,0%,100%,0) 100%),
+      -webkit-radial-gradient(   0%  50%, 50%  7%, hsla(0,0%,100%,.5) 0%, hsla(0,0%,100%,0) 100%),
+      -webkit-radial-gradient( 100%  50%, 50%  5%, hsla(0,0%,100%,.5) 0%, hsla(0,0%,100%,0) 100%),
+      -webkit-repeating-radial-gradient( 50% 50%, 100% 100%, hsla(0,0%,  0%,0) 0%, hsla(0,0%,  0%,0)   3%, hsla(0,0%,  0%,.1) 3.5%),
+      -webkit-repeating-radial-gradient( 50% 50%, 100% 100%, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0)   6%, hsla(0,0%,100%,.1) 7.5%),
+      -webkit-repeating-radial-gradient( 50% 50%, 100% 100%, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 1.2%, hsla(0,0%,100%,.2) 2.2%),
+      -webkit-radial-gradient( 50% 50%, 200% 50%, hsla(0,0%,90%,1) 5%, hsla(0,0%,85%,1) 30%, hsla(0,0%,60%,1) 100%);
+  }
+ 
+  .metal.radial:before, .metal.radial:after {
+    /* fake conical gradients */
+    background-image: -webkit-radial-gradient(  50%   0%, 10% 50%, hsla(0,0%,0%,.1) 0%, hsla(0,0%,0%,0) 100%),
+      -webkit-radial-gradient(  50% 100%, 10% 50%, hsla(0,0%,0%,.1) 0%, hsla(0,0%,0%,0) 100%),
+      -webkit-radial-gradient(   0%  50%, 50% 10%, hsla(0,0%,0%,.1) 0%, hsla(0,0%,0%,0) 100%),
+      -webkit-radial-gradient( 100%  50%, 50% 06%, hsla(0,0%,0%,.1) 0%, hsla(0,0%,0%,0) 100%);
+  }
+  .metal.radial:before { transform: rotate( 65deg); }
+  .metal.radial:after { transform: rotate(-65deg); }
+
+.simon-control-container{
+    width: calc(var(--size)*var(--controler-size));
+    height: calc(var(--size)*var(--controler-size));
+    border-radius: 50%;
+    position:absolute;
+    top: calc(50% - ((var(--size)*var(--controler-size)) / 2));
+    left: calc(50% - ((var(--size)*var(--controler-size)) / 2));
+    z-index: 1;
+    border: 5px solid black;
+}
+
+.game-name{
+  font-size: 3rem;
+  text-align: center;
+  font-family: holye;
+}
+
+.box{
+    width: calc(var(--size)*var(--box-size)*1.6);
+    height: calc(var(--size)*var(--box-size)*1.6);
+    box-shadow: inset hsla(0,0%,15%,  1) 0  0px 0px 4px, /* border */
+    inset hsla(0,0%,15%, .8) 0 -1px 5px 4px, /* soft SD */
+    inset hsla(0,0%,0%, .25) 0 -1px 0px 7px, /* bottom SD */
+    hsla(0,0%, 0%,.15) 0 -5px 6px 4px; /* outer SD */
+    transition: color .2s;
+    position:absolute;
+}
+
+#box1{
+    background-color: yellow;
+    border-radius: 75% 10% 0% 10%;
+    top:10%;
+    right: 50%;
+}
+
+#box2{
+    background-color:red;
+    border-radius: 10% 0% 10% 75%;
+    bottom: 10%;
+    right: 50%;
+}
+
+#box3{
+    background-color: blue;
+    border-radius: 10% 75% 10% 0%;
+    left: 50%;
+    top: 10%;
+}
+
+#box4{
+    background-color: green;
+    border-radius: 0% 10% 75% 10%;
+    bottom: 10%;
+    left: 50%;
+}
