@@ -8,15 +8,41 @@
     <title>Simon</title>
 </head>
 <body>
-    <main>
-        <div class="simon-container">
+    <main id="main">
+        <div class="simon-container" id="simon">
             <div class="simon-control-container metal radial">
-                <div class='game-name'>SIMON</div>
+                    <div class="title">
+                        <div class='game-name'>SIMON</div>
+                    </div>
+                    <div class="display">
+                        <input type="text" id='display' disabled="true">
+                    </div>
+                    <div class="buttons">
+                      <div class="on">
+                        <div class="onText">ON</div>
+                        <div class="onButton">
+                            <button id="start"></button>
+                        </div>
+                      </div>
+                      <div class="start">
+                        <div class="startText">START</div>
+                        <div class="startButton">
+                            <button id="start"></button>
+                        </div>
+                      </div>
+                      <div class="reset">
+                        <div class="resetText">RESET</div>
+                        <div class="resetButton">
+                            <button id="start"></button>
+
+                        </div>
+                      </div>
+                    </div>
             </div>
-            <div class="box 1" id="box1" ></div>
-            <div class="box 2" id="box2"></div>
-            <div class="box 3" id="box3"></div>
-            <div class="box 4" id="box4"></div>
+            <div class="box 0 yellow" id="box1" ></div>
+            <div class="box 1 red" id="box2"></div>
+            <div class="box 2 blue" id="box3"></div>
+            <div class="box 3 green" id="box4"></div>
         </div>        
     </main>
     <script src="script.js" type="module"></script>

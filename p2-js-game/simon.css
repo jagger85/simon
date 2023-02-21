@@ -2,7 +2,10 @@
   font-family: holye;
   src: url('./assets/Hoyle.ttf');
 }
-
+@font-face{
+  font-family: digital;
+  src: url('./assets/Digital-7.ttf')
+}
 *{
     box-sizing: border-box;
 }
@@ -33,6 +36,7 @@ main{
       inset hsla(0,0%,0%, .25) 0 -1px 0px 7px, /* bottom SD */
       hsla(0,0%, 0%,.15) 0 -5px 6px 4px; /* outer SD */
     transition: color .2s;
+
 }
 
 .metal {
@@ -48,7 +52,6 @@ main{
     transition: color .2s;
   }
   .radial.metal {
-    line-height: 160px;
     background-image: -webkit-radial-gradient(  50%   0%,  8% 50%, hsla(0,0%,100%,.5) 0%, hsla(0,0%,100%,0) 100%),
       -webkit-radial-gradient(  50% 100%, 12% 50%, hsla(0,0%,100%,.6) 0%, hsla(0,0%,100%,0) 100%),
       -webkit-radial-gradient(   0%  50%, 50%  7%, hsla(0,0%,100%,.5) 0%, hsla(0,0%,100%,0) 100%),
@@ -85,6 +88,29 @@ main{
   text-align: center;
   font-family: holye;
   user-select: none;
+  height: 8rem;
+}
+
+#display{
+  background-color: black;
+  color:red;
+  font-size: calc(var(--size)/4.5);
+  font-family: digital;
+  user-select: none;
+  width: 15rem;
+  box-shadow: inset rgb(66, 66, 66) 0  0px 0px 4px, /* border */
+  inset hsla(0,0%,15%, .8) 0 -1px 5px 4px, /* soft SD */
+  inset hsla(0,0%,0%, .25) 0 -1px 0px 7px, /* bottom SD */
+  hsla(0,0%, 0%,.15) 0 -5px 6px 4px; /* outer SD */
+  transition: color .2s;
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+#start{
+  border-radius: 50%;
+  width: calc(var(--size)/4);
+  height: calc(var(--size)/4);
+  background-color: darkred;
 }
 
 .box{
@@ -99,54 +125,176 @@ main{
 }
 
 #box1{
-    background-color: yellow;
     border-radius: 75% 10% 0% 10%;
     top:10%;
     right: 50%;
 }
 
 #box2{
-    background-color:red;
     border-radius: 10% 0% 10% 75%;
     bottom: 10%;
     right: 50%;
 }
 
 #box3{
-    background-color: blue;
     border-radius: 10% 75% 10% 0%;
     left: 50%;
     top: 10%;
 }
 
 #box4{
-    background-color: green;
     border-radius: 0% 10% 75% 10%;
     bottom: 10%;
     left: 50%;
 }
 
-#box1:hover{
+.pressed{
+  border:10px solid black;
+}
+
+.yellow {
+  background-color: yellow;
+}
+.red{
+  background-color: red;
+}
+.green{
+  background-color: green;
+}
+.blue{
+  background-color: blue;
+}
+
+.yellow.active {
   filter: drop-shadow(31px 14px 70px yellow);
   background-color: rgb(255, 250, 99);
-  border:10px solid black;
 }
 
-#box2:hover{
+.active.red{
   background-color: rgb(255, 50, 50);
   filter: drop-shadow(31px 14px 70px red);
-  border:10px solid black;
 }
 
-#box3:hover{
+.active.blue{
   background-color: rgb(68, 68, 253);
   filter: drop-shadow(31px 14px 70px blue);
-  border:10px solid black;
 }
 
-#box4:hover{
+.active.green{
   background-color: greenyellow;
   filter: drop-shadow(31px 14px 70px #3aed087b);
-  border:10px solid black;
+}
+
+.simon-control-container {  
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1.4fr 1.1fr 0.5fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "title"
+    "display"
+    "buttons";
+}
+
+.title {
+   grid-area: title; 
+  margin-top: 3rem;
+  height: 6rem;
+  }
+
+.display {
+  grid-area: display;
+  margin-left: auto;
+  margin-right: auto;
+  
+  
+}
+
+.buttons {  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "on start reset";
+  grid-area: buttons;
+  margin-bottom: 5rem;
+}
+
+.on {  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "onText"
+    "onButton";
+  grid-area: on;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.onText {
+  grid-area: onText;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.onButton {
+  margin-left: auto;
+  margin-right: auto;
+  grid-area: onButton;
+}
+
+.start {  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "startText"
+    "startButton";
+  grid-area: start;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.startText {
+  margin-left: auto;
+  margin-right: auto;
+  grid-area: startText;
+}
+
+.startButton {
+  margin-left: auto;
+  margin-right: auto;
+  grid-area: startButton;
+}
+
+.reset {  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "resetText"
+    "resetButton";
+  grid-area: reset;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.resetText {
+  grid-area: resetText;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.resetButton {
+  grid-area: resetButton;
+  margin-left: auto;
+  margin-right: auto;
 }
 
