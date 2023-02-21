@@ -1,6 +1,7 @@
 import {sound} from './sound.js'
 import {init} from './view.js'
 import {box1,box2,box3,box4,start,reset} from './models/models.js'
+import {display} from './models/display.js'
 let state =''
 let sequence = [];
 let userSequence = [];
@@ -18,7 +19,12 @@ init()
 /   Event listeners
 */
 start.addEventListener('click',()=>{
-    startGame()
+    display.value = 'STARTING...'
+
+    setTimeout(()=>{
+        startGame()
+        display.value = ''
+    },2000)
 })
 
 reset.addEventListener('click',()=>{
@@ -51,60 +57,68 @@ function createSequence(){
 
 function startSequence(sequence,velocity){
     let n = 0;
-    step(sequence,velocity)
-
-    function step(sequence,velocity){
-
-    if(sequence[n]==undefined){
-        state = 'reading'
-    }
-    else{
-        boxes[sequence[n]].activate()
+    display.value = 'GET READY!'
     setTimeout(()=>{
-        boxes[sequence[n]].deactivate()
-        n++
-        setTimeout(()=>{
-            step(sequence,velocity)
-        },100)
-        
-    },velocity*1000)
-    }}
-   
+        step(sequence,velocity)
+        display.value = ''
+        function step(sequence,velocity){
+
+            if(sequence[n]==undefined){
+                state = 'reading'
+            }
+            else{
+                boxes[sequence[n]].activate()
+            setTimeout(()=>{
+                boxes[sequence[n]].deactivate()
+                n++
+                setTimeout(()=>{
+                    step(sequence,velocity)
+                },100)
+                
+            },velocity*1000)
+            }}
+    },3000)
 }
 
 function readUserInput(sequence,input){
     if(state == 'reading'){
     if(input == sequence[userSteps]){
         userSteps++
-        console.log('good input')
         if(sequence[userSteps]==undefined){
             console.log('level finished')
             levelUp();
         }
     }else{
-        console.log('wrong input')
-        finishGame()
-    }
-    }
+        display.value = 'WRONG INPUT'
+        setTimeout(()=>{
+            display.value = 'GAME OVER' 
+        },2000)
+        setTimeout(()=>{
+            finishGame()
+        },4000)
+    }}
 }
 
 function levelUp(){
     userSteps = 0;
     steps +=1;
     velocity -= 0.1;
-    console.log('leveling up')
+    display.value = 'LEVEL UP'
     setTimeout(()=>{
+        display.value = ''
         startSequence(createSequence(),velocity)
     },3000)
 
 }
 
 function finishGame(){
+    display.value = 'LEVEL: ' +(steps-3)
 
-    console.log('Game Finished Level: ' + (steps-3))
-    userSteps =0;
-    steps = 4;
-    velocity = 1.2;
-    
+    setTimeout(()=>{
+        userSteps =0;
+        steps = 4;
+        velocity = 1.2;
+        display.value = ''
+    },2000)
 }
 

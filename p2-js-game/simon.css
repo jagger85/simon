@@ -8,7 +8,7 @@
 }
 
 :root{
- --size:100px;
+ --size:7.5rem;
  --controler-size:3;
  --box-size:1.5
 }
@@ -84,6 +84,7 @@ main{
   font-size: 3rem;
   text-align: center;
   font-family: holye;
+  user-select: none;
 }
 
 .box{
@@ -124,3 +125,28 @@ main{
     bottom: 10%;
     left: 50%;
 }
+
+#box1:hover{
+  filter: drop-shadow(31px 14px 70px yellow);
+  background-color: rgb(255, 250, 99);
+  border:10px solid black;
+}
+
+#box2:hover{
+  background-color: rgb(255, 50, 50);
+  filter: drop-shadow(31px 14px 70px red);
+  border:10px solid black;
+}
+
+#box3:hover{
+  background-color: rgb(68, 68, 253);
+  filter: drop-shadow(31px 14px 70px blue);
+  border:10px solid black;
+}
+
+#box4:hover{
+  background-color: greenyellow;
+  filter: drop-shadow(31px 14px 70px #3aed087b);
+  border:10px solid black;
+}
+

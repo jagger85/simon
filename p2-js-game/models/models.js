@@ -1,8 +1,9 @@
-class myBox extends HTMLDivElement{
+class MyBox extends HTMLDivElement{
     constructor(){
         super()
         this.style.cssText = 'border:1px solid black; width:100px;height:100px;'
         this.classList.add('box')
+        
         let state = 'inactive'
     }
    
@@ -17,7 +18,7 @@ class myBox extends HTMLDivElement{
     }
 }
 
-customElements.define('custom-box',myBox,{extends:'div'})
+customElements.define('custom-box',MyBox,{extends:'div'})
 
 export const box1 = document.createElement('div',{is:'custom-box'})
 export const box2 = document.createElement('div',{is:'custom-box'})
