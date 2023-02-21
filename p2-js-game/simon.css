@@ -10,24 +10,16 @@
     box-sizing: border-box;
 }
 
-:root{
- --size:7.5rem;
- --controler-size:3;
- --box-size:1.5
-}
-
 body {
-    background-color: grey;
-}
-main{
-  display:flex;
-  justify-content: center;
+    background-image: url('./assets/wood.jpg');
+    background-size: 30%;
+    
 }
 
 .simon-container{
     background-image: url('./assets/plastic.png');
-    width: calc(var(--size)*6);
-    height: calc(var(--size)*6);
+    width: 45rem ;
+    height: 45rem;
     border-radius: 50%;
     position: relative;
     background-color: hsl(0,0%,90%);
@@ -36,7 +28,8 @@ main{
       inset hsla(0,0%,0%, .25) 0 -1px 0px 7px, /* bottom SD */
       hsla(0,0%, 0%,.15) 0 -5px 6px 4px; /* outer SD */
     transition: color .2s;
-
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .metal {
@@ -73,14 +66,15 @@ main{
   .metal.radial:after { transform: rotate(-65deg); }
 
 .simon-control-container{
-    width: calc(var(--size)*var(--controler-size));
-    height: calc(var(--size)*var(--controler-size));
+    width: 50%;
+    height: 50%;
     border-radius: 50%;
     position:absolute;
-    top: calc(50% - ((var(--size)*var(--controler-size)) / 2));
-    left: calc(50% - ((var(--size)*var(--controler-size)) / 2));
     z-index: 1;
     border: 5px solid black;
+    left: 25%;
+    top: 25%;
+    
 }
 
 .game-name{
@@ -94,7 +88,7 @@ main{
 #display{
   background-color: black;
   color:red;
-  font-size: calc(var(--size)/4.5);
+  font-size: 2rem;
   font-family: digital;
   user-select: none;
   width: 15rem;
@@ -106,16 +100,24 @@ main{
   border-radius: 5px;
   padding: 0.5rem;
 }
-#start{
+button{
   border-radius: 50%;
-  width: calc(var(--size)/4);
-  height: calc(var(--size)/4);
+  width: 2rem ;
+  height: 2rem;
+}
+#start{
+  background-color: rgb(139, 104, 0);
+}
+#reset{
+  background-color: darkred;
+}
+#on{
   background-color: darkred;
 }
 
 .box{
-    width: calc(var(--size)*var(--box-size)*1.6);
-    height: calc(var(--size)*var(--box-size)*1.6);
+    width: 40%;
+    height: 40%;
     box-shadow: inset hsla(0,0%,15%,  1) 0  0px 0px 4px, /* border */
     inset hsla(0,0%,15%, .8) 0 -1px 5px 4px, /* soft SD */
     inset hsla(0,0%,0%, .25) 0 -1px 0px 7px, /* bottom SD */
@@ -181,7 +183,7 @@ main{
 }
 
 .active.green{
-  background-color: greenyellow;
+  background-color: rgb(0, 180, 0);
   filter: drop-shadow(31px 14px 70px #3aed087b);
 }
 
