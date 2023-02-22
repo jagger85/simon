@@ -1,11 +1,8 @@
 import {box1,box2,box3,box4,display} from '../models/models.js'
 import { printNote } from '../models/notes.js';
 import {play,setSound} from './sound.js'
+import {dataHandler as data} from '../models/constants.js'
 const boxes = [box1,box2,box3,box4]
-let velocity = 1.2;
-let steps = 4;
-let userSteps = 0;
-let sequence = undefined;
 
 export let simon ={
     state: 'OFF',
@@ -14,6 +11,8 @@ export let simon ={
             switch: function(){
                 document.getElementById('power-icon').classList.add('red-glow');
                 display.value = 'WELCOME';
+                data.init()
+                printNote()
                 setTimeout(()=>{
                     display.value = ''
                     simon.changeState('STANDBY');
@@ -38,25 +37,23 @@ export let simon ={
                 switchOff()
             },
             displayPattern: function(){
-                sequence = createSequence();
-                console.log(sequence)
-                let n = 0;
+                data.createNewSequence()
                 display.value = 'GET READY!'
+                let n=0;
                 setTimeout(()=>{
                     step()
                     display.value = ''
-
                     function step(){
-                            boxes[sequence[n]].classList.add('active');
-                            play('box'+sequence[n],velocity)
+                            boxes[data.getSequence[n]].classList.add('active');
+                            play('box'+data.getSequence[n],data.getSpeed)
                         setTimeout(()=>{
-                            boxes[sequence[n]].classList.remove('active')
+                            boxes[data.getSequence[n]].classList.remove('active')
                             n++
 
                         setTimeout(()=>{
-                            sequence[n]!=undefined ? step() : simon.changeState('READING')      
+                            data.getSequence[n]!=undefined ? step() : simon.changeState('READING')      
                             },100)
-                        },velocity*1000)
+                        },data.getSpeed*1000)
                         }
                 },3000)}
             },
@@ -65,9 +62,10 @@ export let simon ={
                 switchOff()
             },
             readUserInput: function(input){
-                if(input.target.classList.contains(sequence[userSteps])){
-                    userSteps++
-                    sequence[userSteps] ?? levelUp();
+               
+                if(input.target.classList.contains(data.getSequence[data.getUserSteps])){
+                    data.addUserStep()
+                    data.getSequence[data.getUserSteps] ?? levelUp();
                 }
                     else{
                         display.value = 'WRONG INPUT'
@@ -93,10 +91,10 @@ export let simon ={
                     setTimeout(()=>{
                         boxes[pattern[n]].classList.remove('active')
                         n++
-                        pattern[n]!=undefined ? step() : localStorage.removeItem('level')
+                        pattern[n]!=undefined ? step() : data.setRecord(0)
                     },velocity*50)
                 }
-                resetValues();
+                data.reset();
                 
             }
         }
@@ -117,19 +115,9 @@ export let simon ={
     }
 }
 
-function createSequence(){
-    return [...Array(steps)].map(()=>Math.floor(Math.random()*4));
-}
-
 function levelUp(){
-    if(!localStorage.getItem('level') || localStorage.getItem('level')<(steps-3)){
-        setRecord(steps-3)
-    }
-    userSteps = 0;
-    steps +=1;
-    velocity -= 0.1;
-
     display.value = 'LEVEL UP'
+    data.levelUp()
     setTimeout(()=>{
         display.value = ''
         simon.changeState('DISPLAYING')
@@ -137,13 +125,6 @@ function levelUp(){
     },3000)
 }
 
-function initValues(){
-    printNote()
-    velocity = 1.2;
-    steps = 1;
-    userSteps =0;
-    display.value =''
-}
 function switchOff(){
     document.getElementById('power-icon').classList.remove('red-glow');
     setSound(false);
@@ -153,9 +134,4 @@ function switchOff(){
         display.value = ''
         
     },2000)  
-}
-
-function setRecord(level){
-    localStorage.setItem('level',level)
-
 }
