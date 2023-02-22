@@ -1,9 +1,10 @@
 import {box1,box2,box3,box4,display} from './models/models.js'
+import {play} from './sound.js'
 const boxes = [box1,box2,box3,box4]
 let velocity = 1.2;
-let steps = 4;
+let steps = 1;
 let userSteps = 0;
-let sequence = [];
+let sequence = undefined;
 
 export let simon ={
     state: 'OFF',
@@ -31,32 +32,28 @@ export let simon ={
                 switchOff()
             },
             displayPattern: function(){
-                sequence = createSequence()
+                sequence = createSequence();
+                console.log(sequence)
                 let n = 0;
                 display.value = 'GET READY!'
-                
                 setTimeout(()=>{
-                    step(sequence,velocity)
+                    step()
                     display.value = ''
-                    function step(sequence,velocity){
-                        if(simon.state != 'OFF'){
-                        if(sequence[n]==undefined){
-                            simon.changeState('READING');
-                        }
-                        else{
+
+                    function step(){
                             boxes[sequence[n]].classList.add('active');
+                            play('box'+sequence[n],duration)
                         setTimeout(()=>{
                             boxes[sequence[n]].classList.remove('active')
                             n++
-                            setTimeout(()=>{
-                                step(sequence,velocity)
+
+                        setTimeout(()=>{
+                            sequence[n]!=undefined ? step() : simon.changeState('READING')      
                             },100)
-                            
                         },velocity*1000)
-                        }}
-            }},3000);
-            }
-        },
+                        }
+                },3000)}
+            },
         READING:{
             switch: function(){
                 switchOff()
@@ -64,19 +61,18 @@ export let simon ={
             readUserInput: function(input){
                 if(input.target.classList.contains(sequence[userSteps])){
                     userSteps++
-                    if(sequence[userSteps]==undefined){
-                        levelUp();
-                    }
-                }else{
-                    display.value = 'WRONG INPUT'
-                    setTimeout(()=>{
-                        display.value = 'GAME OVER' 
-                    },2000)
-                    setTimeout(()=>{
-                        simon.changeState('RESETING')
-                        simon.dispatch('resetValues')
-                    },4000)
+                    sequence[userSteps] ?? levelUp();
                 }
+                    else{
+                        display.value = 'WRONG INPUT'
+                        setTimeout(()=>{
+                            display.value = 'GAME OVER' 
+                        },2000)
+                        setTimeout(()=>{
+                            simon.changeState('RESETING')
+                            simon.dispatch('resetValues')
+                        },4000)
+                    }
             }
 
         },
@@ -103,14 +99,8 @@ export let simon ={
     }
 }
 
-
 function createSequence(){
-    let sequence = []
-    for(let i=0; i<steps;i++){
-        sequence.push(Math.floor(Math.random()*4))
-    }
-    console.log(sequence)
-    return sequence;
+    return [...Array(steps)].map(()=>Math.floor(Math.random()*4));
 }
 
 function levelUp(){
@@ -127,7 +117,7 @@ function levelUp(){
 
 function resetValues(){
     velocity = 1.2;
-    steps = 4;
+    steps = 1;
     userSteps =0;
     display.value =''
 }

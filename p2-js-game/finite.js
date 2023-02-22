@@ -1,5 +1,6 @@
 import {simon} from './simon.js'
 import {start,on,reset} from './models/models.js'
+import {play} from './sound.js'
 
 on.addEventListener('click',()=>{
     simon.dispatch('switch')
@@ -12,6 +13,7 @@ document.querySelector('#simon').addEventListener('mousedown',(e)=>{
     if(e.target.classList.contains('box') && simon.state != 'OFF'){
          e.target.classList.add('pressed')
          e.target.classList.add('active')
+         play(e.target.id)
      }
      if(e.target.classList.contains('box')){
         e.target.classList.add('pressed')
@@ -22,6 +24,7 @@ document.querySelector('#simon').addEventListener('mousedown',(e)=>{
     if(e.target.classList.contains('box') && simon.state != 'OFF'){
          e.target.classList.add('pressed')
          e.target.classList.add('active')
+         play(e.target.id)
      }
      if(e.target.classList.contains('box')){
         e.target.classList.add('pressed')
@@ -43,6 +46,7 @@ document.querySelector('#simon').addEventListener('mousedown',(e)=>{
 
  document.querySelector('#simon').addEventListener('click',(e)=>{
     if(e.target.classList.contains('box')){
-         simon.dispatch('readUserInput',[e])
+        
+        simon.dispatch('readUserInput',[e])
      }
  })

@@ -3,10 +3,9 @@ class Display extends HTMLInputElement{
         super()
         this.style.backgroundColor = 'black';
         this.style.color = 'red';
-        
         this.readOnly = true;
         this.style.userSelect = 'none'
-        
+
         new FontFace('digital','url(../assets/Digital-7.ttf)');
         this.style.fontFamily = 'digital'
         this.style.fontSize = '3rem'
