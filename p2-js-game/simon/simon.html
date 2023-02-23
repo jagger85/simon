@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/simon.css">
+    <link rel="stylesheet" href="./styles/sticky.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <title>Simon</title>
+</head>
+<body>
+    <main id="main">
+        <div class="simon-container" id="simon">
+            <div class="simon-control-container metal radial">
+                    <div class="title">
+                        <div class='game-name'>SIMON</div>
+                    </div>
+                    <div class="display">
+                        <input type="text" id='display' disabled="true">
+                    </div>
+                    <div class="buttons">
+                      <div class="on">
+                        <div class="onText"></div>
+                        <div class="onButton">
+                            <button id="on"><i id='power-icon' class="bi bi-power"></i></button>
+                        </div>
+                      </div>
+                      <div class="start">
+                        <div class="startText"></div>
+                        <div class="startButton">
+                            <button id="start"><i class="bi bi-play"></i></button>
+                        </div>
+                      </div>
+                      <div class="reset">
+                        
+                        <div class="resetButton">
+                          
+                            <button id="sound"><i id='sound-icon' class="bi bi-volume-up-fill"></i></button>
+
+                        </div>
+                      </div>
+                    </div>
+            </div>
+            <div class="box 0 yellow" id="box1" ></div>
+            <div class="box 1 red" id="box2"></div>
+            <div class="box 2 blue" id="box3"></div>
+            <div class="box 3 green" id="box4"></div>
+        </div> 
+        <div id="note-container" class="sticky-container">
+            <div class="sticky-outer">
+              <div class="sticky">
+                <svg width="0" height="0">
+                  <defs>
+                    <clipPath id="stickyClip" clipPathUnits="objectBoundingBox">
+                      <path
+                        d="M 0 0 Q 0 0.69, 0.03 0.96 0.03 0.96, 1 0.96 Q 0.96 0.69, 0.96 0 0.96 0, 0 0"
+                        stroke-linejoin="round"
+                        stroke-linecap="square"
+                      />
+                    </clipPath>
+                  </defs>
+                </svg>
+                <div id="sticky-content" class="sticky-content">
+                </div>
+              </div>
+            </div>
+          </div>    
+    </main>
+    <script src="./scripts/handler.js" type="module"></script>
+</body>
+</html>
