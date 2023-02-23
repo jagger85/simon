@@ -1,27 +1,32 @@
-import {box1,box2,box3,box4,display} from '../models/models.js'
-import { printNote } from '../models/notes.js';
-import {play,setSound} from './sound.js'
-import {dataHandler as data} from '../models/constants.js'
+import {box1,box2,box3,box4} from '../models/models.js'
+import { fn as notes } from '../models/notes.js';
+import {dataCenter as data, fn as datacenter} from '../models/dataCenter.js'
+import {events as e} from '../models/events.js'
+import {fn as display} from '../models/newDisplay.js'
+import {fn as controlButtons} from '../models/controlButtons.js'
 const boxes = [box1,box2,box3,box4]
+
+
+const observer = createObservable();
+observer.subscribe(display);
+observer.subscribe(notes);
+observer.subscribe(controlButtons);
+observer.subscribe(datacenter);
+
 
 export let simon ={
     state: 'OFF',
     transitions:{
         OFF:{
             switch: function(){
-                document.getElementById('power-icon').classList.add('red-glow');
-                display.value = 'WELCOME';
-                data.init()
-                printNote()
-                setTimeout(()=>{
-                    display.value = ''
-                    simon.changeState('STANDBY');
-                },2000)
+                simon.changeState('STANDBY');
+                observer.broadcast(e.ON)
             }
         },
         STANDBY:{
             switch: function(){
-                switchOff()
+                simon.changeState('OFF');
+                observer.broadcast(e.OFF)
             },
             startGame: function(){
                 simon.changeState('DISPLAYING');
@@ -34,18 +39,16 @@ export let simon ={
         },
         DISPLAYING:{
             switch: function(){
-                switchOff()
+                simon.changeState('OFF')
+                observer.broadcast(e.OFF)
             },
             displayPattern: function(){
-                data.createNewSequence()
-                display.value = 'GET READY!'
+                observer.broadcast(e.SEQUENCESTARTING)
                 let n=0;
                 setTimeout(()=>{
                     step()
-                    display.value = ''
                     function step(){
                             boxes[data.getSequence[n]].classList.add('active');
-                            play('box'+data.getSequence[n],data.getSpeed)
                         setTimeout(()=>{
                             boxes[data.getSequence[n]].classList.remove('active')
                             n++
@@ -59,21 +62,25 @@ export let simon ={
             },
         READING:{
             switch: function(){
-                switchOff()
+                simon.changeState('OFF');
+                observer.broadcast(e.OFF);
             },
             readUserInput: function(input){
                
                 if(input.target.classList.contains(data.getSequence[data.getUserSteps])){
                     data.addUserStep()
-                    data.getSequence[data.getUserSteps] ?? levelUp();
+                    if (data.getSequence[data.getUserSteps] == undefined){
+                        observer.broadcast(e.LEVELUP);
+                        simon.changeState('DISPLAYING');
+                        simon.dispatch('displayPattern');
+                    }
                 }
                     else{
-                        display.value = 'WRONG INPUT'
+                        observer.broadcast(e.WRONGINPUT);
                         setTimeout(()=>{
-                            display.value = 'GAME OVER' 
+                            observer.broadcast(e.GAMEOVER)
                         },2000)
                         setTimeout(()=>{
-                            initValues();
                             simon.changeState('STANDBY');
                         },4000)
                     }
@@ -82,7 +89,7 @@ export let simon ={
         },
         RESETING:{
             resetValues: function(){
-                display.value = 'RESET'
+                observer.broadcast(e.RESET)
                 let pattern= [0,2,3,1,0,2,3,1,0];
                 let n = 0;
                 step();
@@ -91,11 +98,9 @@ export let simon ={
                     setTimeout(()=>{
                         boxes[pattern[n]].classList.remove('active')
                         n++
-                        pattern[n]!=undefined ? step() : data.setRecord(0)
+                       if(pattern[n]!=undefined)step() 
                     },velocity*50)
                 }
-                data.reset();
-                
             }
         }
     },
@@ -115,23 +120,24 @@ export let simon ={
     }
 }
 
-function levelUp(){
-    display.value = 'LEVEL UP'
-    data.levelUp()
-    setTimeout(()=>{
-        display.value = ''
-        simon.changeState('DISPLAYING')
-        simon.dispatch('displayPattern')
-    },3000)
+function createObservable() {
+    return{
+       subscribers : [],
+
+    subscribe(fn){
+        this.subscribers.push(fn);
+    },
+
+    unsuscribe(fn){
+        this.suscribers = this.suscribers.filter((item) => item !== fn);
+    },
+
+    broadcast(data) {
+        for (let i = 0; i< this.subscribers.length; i++){
+            this.subscribers[i](data);
+        }
+    }
+    }
 }
 
-function switchOff(){
-    document.getElementById('power-icon').classList.remove('red-glow');
-    setSound(false);
-    simon.changeState('OFF');
-    display.value = 'BYE';
-    setTimeout(()=>{
-        display.value = ''
-        
-    },2000)  
-}
+

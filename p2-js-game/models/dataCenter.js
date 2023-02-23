@@ -1,4 +1,5 @@
-export const dataHandler = {
+import {events as e} from './events.js'
+export const dataCenter = {
 
     speed : 1.2,
     steps : 4,
@@ -78,3 +79,26 @@ export const dataHandler = {
         localStorage.setItem('record',this.record)
     }
 }
+
+export const fn = (data) =>{
+    switch (data){
+        case (data = e.ON):
+          
+            dataCenter.init();
+            break;
+        case (data = e.SEQUENCESTARTING):
+            dataCenter.createNewSequence();
+            break;
+        case (data = e.LEVELUP):
+            dataCenter.levelUp();
+            break;
+        case (data = e.RESET):
+            dataCenter.reset();
+            break;
+        case (data = e.LOADPAGE):
+            dataCenter.init();
+            break;
+        case (data = e.WRONGINPUT):
+            dataCenter.init();
+    }
+} 

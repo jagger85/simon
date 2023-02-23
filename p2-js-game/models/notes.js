@@ -1,15 +1,17 @@
+import { events as e } from "./events.js";
+
 const notes = {
     1 : "How to play:<br>Train your memory and <br>remember the pattern <br>Don't forget to switch it on <br>Enjoy!",
     2 : 'For reset:<br>Press play button for <br> three seconds<br>Your current record is ' + (localStorage.getItem('level') ?? 0) +'<br>'+ getSentece(localStorage.getItem('level')),
     3 : 'Made with &nbsp;<i class="bi bi-heart"></i> &nbsp;by Jagger85'
 };
 
-export function printNote(){
+function printNote(){
     if(localStorage.getItem('note')== undefined) localStorage.setItem('note',1)
     document.getElementById('sticky-content').innerHTML = notes[localStorage.getItem('note')];
 }
 
-export function nextNote(){
+function nextNote(){
     if(localStorage.getItem('note') > 2){
         localStorage.setItem('note',1)
         document.getElementById('sticky-content').innerHTML = notes[localStorage.getItem('note')];
@@ -34,5 +36,21 @@ function getSentece(level){
 
         case (level>=9):
             return "OK YOU WIN!!!!";
+    }
+}
+
+export const fn = (data) =>{
+    
+    switch(data){
+        case (data = e.NOTECLICKED):
+            nextNote();
+            break;
+        case (data = e.ON):
+            printNote();
+            break;
+        case (data = e.LOADPAGE):
+            printNote();
+        default:
+            break;
     }
 }

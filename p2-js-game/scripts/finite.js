@@ -1,12 +1,16 @@
 import {simon} from './simon.js'
-import {start,on,reset} from '../models/models.js'
-import {play,switchSound} from './sound.js'
-import { nextNote,printNote } from '../models/notes.js';
+import { fn as sound} from '../models/soundService.js'
+import { fn as notes } from '../models/notes.js';
+import { events as e } from '../models/events.js';
+import { fn as dataCenter} from '../models/dataCenter.js'
 let lastClicked = 0;
 let clickedAt = 0;
 
-printNote()
-
+const observer = createObservable();
+observer.subscribe(dataCenter);
+observer.subscribe(notes);
+observer.subscribe(sound);
+observer.broadcast(e.LOADPAGE)
 
 on.addEventListener('click',()=>{
     simon.dispatch('switch')
@@ -22,7 +26,6 @@ start.addEventListener('mousedown',()=>{
     setTimeout(()=>{
         if(clickedAt>lastClicked && simon.state != 'OFF'){
             simon.dispatch('reset');
-
         }
     },3000)
 })
@@ -30,7 +33,6 @@ start.addEventListener('mousedown',()=>{
 document.querySelector('#simon').addEventListener('mousedown',(e)=>{
     if(e.target.classList.contains('box') && simon.state != 'OFF'){
          e.target.classList.add('active','pressed')
-         play(e.target.id)
      }
      if(e.target.classList.contains('box')){
         e.target.classList.add('pressed')
@@ -41,7 +43,6 @@ document.querySelector('#simon').addEventListener('mousedown',(e)=>{
 document.querySelector('#simon').addEventListener('pointerdown',(e)=>{
     if(e.target.classList.contains('box') && simon.state != 'OFF'){
          e.target.classList.add('pressed','active')
-         play(e.target.id)
      }
      if(e.target.classList.contains('box')){
         e.target.classList.add('pressed')
@@ -68,9 +69,31 @@ document.querySelector('#simon').addEventListener('click',(e)=>{
 })
 
 document.querySelector('#sound').addEventListener('click',()=>{
-        if(simon.state != 'OFF')switchSound();
+       if(simon.state != 'OFF') observer.broadcast(e.SOUNDPRESSED)
 })
 
 document.getElementById('note-container').addEventListener('click',()=>{
-        nextNote();
+        observer.broadcast(e.NOTECLICKED)
 })
+
+function createObservable() {
+    return{
+       subscribers : [],
+
+    subscribe(fn){
+        this.subscribers.push(fn);
+    },
+
+    unsuscribe(fn){
+        this.suscribers = this.suscribers.filter((item) => item !== fn);
+    },
+
+    broadcast(data) {
+        for (let i = 0; i< this.subscribers.length; i++){
+            this.subscribers[i](data);
+        }
+    }
+    }
+}
+
+

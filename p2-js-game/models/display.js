@@ -10,6 +10,11 @@ class Display extends HTMLInputElement{
         this.style.fontFamily = 'digital'
         this.style.fontSize = '3rem'
     }
+
+
+    
+
+
 }
 
 customElements.define('custom-display',Display,{extends:'input'})
