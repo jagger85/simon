@@ -1,14 +1,15 @@
 export const events = {
 
-    ON : 'SimonOn',
-    OFF : 'machineOFF',
-    LEVELUP : 'levelUp',
-    GAMEOVER: 'gameOver',
-    NOTECLICKED: 'noteClicked',
+    ON:'SimonOn',
+    OFF:'machineOFF',
+    LEVELUP:'levelUp',
+    GAMEOVER:'gameOver',
+    NOTECLICKED:'noteClicked',
     LOADPAGE:'loadPage',
     WRONGINPUT:'wrongInput',
     RESET:'reset',
-    SEQUENCESTARTING: 'sequenceStarting',
+    USERRESET:'userReset',
+    SEQUENCESTARTING:'sequenceStarting',
     SOUNDPRESSED: 'soundPressed',
     PLAYPRESSED: 'playPressed',
     POWERPRESSED:'powerPressed',
@@ -16,5 +17,9 @@ export const events = {
     REDPRESSED:'redPressed',
     BLUEPRESSED:'bluePressed',
     GREENPRESSED:'greenPressed',
+    YELLOWRELEASED:'yellowReleased',
+    REDRELEASED:'redReleased',
+    BLUERELEASED:'blueReleased',
+    GREENRELEASED:'greenReleased',
 
 }

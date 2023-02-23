@@ -5,7 +5,6 @@ export const dataCenter = {
     steps : 4,
     userSteps:0,
     sequence : undefined,
-    record : undefined,
     actualLevel: 0,
 
     get getSpeed(){
@@ -20,9 +19,6 @@ export const dataCenter = {
     get getSequence(){
         return this.sequence;
     },
-    get getRecord(){
-        return this.record;
-    },
     get getActualLevel(){
         return this.actualLevel;
     },
@@ -36,7 +32,7 @@ export const dataCenter = {
     },
     reset: function(){
         this.init();
-        this.setRecord('record',0);
+        localStorage.setItem('record',0)
         this.update()
     },
     levelUp: function(){
@@ -62,10 +58,6 @@ export const dataCenter = {
         this.userSteps = 0;
         this.update();
     },
-    setRecord: function(level){
-        this.record = level;
-        this.update();
-    },
     createNewSequence: function(){
         this.sequence = [...Array(this.steps)].map(()=>Math.floor(Math.random()*4));
         this.update();
@@ -76,14 +68,12 @@ export const dataCenter = {
         localStorage.setItem('userSteps',this.userSteps)
         localStorage.setItem('sequence',this.sequence)
         localStorage.setItem('actualLevel',this.actualLevel)
-        localStorage.setItem('record',this.record)
     }
 }
 
 export const fn = (data) =>{
     switch (data){
         case (data = e.ON):
-          
             dataCenter.init();
             break;
         case (data = e.SEQUENCESTARTING):
@@ -97,8 +87,12 @@ export const fn = (data) =>{
             break;
         case (data = e.LOADPAGE):
             dataCenter.init();
+            localStorage.setItem('state','OFF')
             break;
         case (data = e.WRONGINPUT):
+            if(dataCenter.getActualLevel>localStorage.getItem('record')){
+               localStorage.setItem('record',dataCenter.getActualLevel)
+            }
             dataCenter.init();
     }
 } 

@@ -1,22 +1,38 @@
-class Display extends HTMLInputElement{
-    constructor(){
-        super()
-        this.style.backgroundColor = 'black';
-        this.style.color = 'red';
-        this.readOnly = true;
-        this.style.userSelect = 'none'
-
-        new FontFace('digital','url(../assets/Digital-7.ttf)');
-        this.style.fontFamily = 'digital'
-        this.style.fontSize = '3rem'
-    }
-
-
+import { display } from "./models.js";
+import { events as e } from "./events.js";
+export const fn = (data) =>{
     
+    switch(data){
+        case (data = e.ON):
+            showValue('WELCOME');
+            break;
+        case (data = e.OFF):
+            showValue('BYE');
+            break;
+        case (data = e.LEVELUP):
+            showValue('LEVEL UP');
+            break;
+        case (data = e.GAMEOVER):
+            showValue('GAME OVER');
+            break;
+        case (data = e.WRONGINPUT):
+            showValue('WRONG INPUT');
+            break;
+        case (data = e.RESET):
+            showValue('RESETING...')
+            break;
+        case (data = e.SEQUENCESTARTING):
+            showValue('GET READY!')
+            break;
 
-
+        default:
+            break;
+    }
 }
 
-customElements.define('custom-display',Display,{extends:'input'})
-export const display = document.createElement('input',{is:'custom-display'})
-
+function showValue(string){
+    display.value = string;
+    setTimeout(()=>{
+        display.value = ''
+    },2000)
+}

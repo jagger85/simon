@@ -1,15 +1,13 @@
-import {events as e} from './events.js'
-const context = new AudioContext()
+import {events as e} from './events.js';
+const context = new AudioContext();
 let enable = false;
 export function play(box,duration){
-    const o = context.createOscillator()
-    o.type = 'triangle'
-    var  g = context.createGain()
-    o.connect(g)
-    g.connect(context.destination)
-    g.gain.exponentialRampToValueAtTime(
-        0.00001, context.currentTime + (duration ?? 1)
-      )
+    const o = context.createOscillator();
+    o.type = 'triangle';
+    var  g = context.createGain();
+    o.connect(g);
+    g.connect(context.destination);
+    g.gain.exponentialRampToValueAtTime(0.00001, context.currentTime + (duration ?? 1))
 
     switch (box){
         case 'box1':
@@ -28,19 +26,20 @@ export function play(box,duration){
             o.frequency.value = 440;
             break
     }
-
-    if(enable)o.start()  
-
+    if(enable)o.start();
 }
 
 function switchSound(){
+    if(localStorage.getItem('state')!= 'OFF'){
     enable = !enable
-    enable ? document.getElementById('sound-icon').classList.add('green-glow') 
+    enable ? document.getElementById('sound-icon').classList.add('green-glow')
     : document.getElementById('sound-icon').classList.remove('green-glow')
+    }
 }
+
 export function setSound(boolean){
     enable = boolean;
-    enable ? document.getElementById('sound-icon').classList.add('green-glow') 
+    enable ? document.getElementById('sound-icon').classList.add('green-glow')
     : document.getElementById('sound-icon').classList.remove('green-glow')
 }
 
@@ -53,7 +52,7 @@ export const fn = (data) =>{
 
         case (data = e.OFF):
         enable = false;
-        break
+        break;
 
         case (data = e.REDPRESSED):
             play('box1',1)
@@ -70,6 +69,5 @@ export const fn = (data) =>{
         case (data = e.BLUEPRESSED):
             play('box4',1)
         break;
-
     }
 }

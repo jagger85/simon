@@ -2,19 +2,20 @@ import {box1,box2,box3,box4} from '../models/models.js'
 import { fn as notes } from '../models/notes.js';
 import {dataCenter as data, fn as datacenter} from '../models/dataCenter.js'
 import {events as e} from '../models/events.js'
-import {fn as display} from '../models/newDisplay.js'
+import {fn as display} from '../models/display.js'
+import {fn as keys} from '../models/keys.js'
 import {fn as controlButtons} from '../models/controlButtons.js'
-const boxes = [box1,box2,box3,box4]
-
+import {fn as sound} from '../models/soundService.js'
 
 const observer = createObservable();
 observer.subscribe(display);
 observer.subscribe(notes);
 observer.subscribe(controlButtons);
 observer.subscribe(datacenter);
+observer.subscribe(keys);
+observer.subscribe(sound);
 
-
-export let simon ={
+let simon ={
     state: 'OFF',
     transitions:{
         OFF:{
@@ -48,9 +49,10 @@ export let simon ={
                 setTimeout(()=>{
                     step()
                     function step(){
-                            boxes[data.getSequence[n]].classList.add('active');
+                            if(localStorage.getItem('state')=='OFF')return;
+                            pressKey(data.getSequence[n]);
                         setTimeout(()=>{
-                            boxes[data.getSequence[n]].classList.remove('active')
+                            releaseKey(data.getSequence[n]);
                             n++
 
                         setTimeout(()=>{
@@ -66,8 +68,7 @@ export let simon ={
                 observer.broadcast(e.OFF);
             },
             readUserInput: function(input){
-               
-                if(input.target.classList.contains(data.getSequence[data.getUserSteps])){
+                if(input == data.getSequence[data.getUserSteps] ){
                     data.addUserStep()
                     if (data.getSequence[data.getUserSteps] == undefined){
                         observer.broadcast(e.LEVELUP);
@@ -79,7 +80,7 @@ export let simon ={
                         observer.broadcast(e.WRONGINPUT);
                         setTimeout(()=>{
                             observer.broadcast(e.GAMEOVER)
-                        },2000)
+                        },2000);
                         setTimeout(()=>{
                             simon.changeState('STANDBY');
                         },4000)
@@ -94,13 +95,18 @@ export let simon ={
                 let n = 0;
                 step();
                 function step(){
-                        boxes[pattern[n]].classList.add('active');
+                        pressKey(pattern[n]);
                     setTimeout(()=>{
-                        boxes[pattern[n]].classList.remove('active')
+                        releaseKey(pattern[n]);
                         n++
                        if(pattern[n]!=undefined)step() 
-                    },velocity*50)
+                    },200)
                 }
+                setTimeout(()=>{
+                    simon.changeState('OFF');
+                    simon.dispatch('switch')
+                },5000)
+              
             }
         }
     },
@@ -120,24 +126,89 @@ export let simon ={
     }
 }
 
+function pressKey(key){
+    switch (key){
+        case (key=0):
+            observer.broadcast(e.YELLOWPRESSED)
+            break;
+
+        case (key=1):
+            observer.broadcast(e.REDPRESSED)
+            break;
+
+        case (key=2):
+            observer.broadcast(e.BLUEPRESSED)
+            break;
+
+        case (key=3):
+            observer.broadcast(e.GREENPRESSED)
+            break;
+    }
+}
+
+function releaseKey(key){
+    switch (key){
+        case (key=0):
+            observer.broadcast(e.YELLOWRELEASED)
+            break;
+
+        case (key=1):
+            observer.broadcast(e.REDRELEASED)
+            break;
+
+        case (key=2):
+            observer.broadcast(e.BLUERELEASED)
+            break;
+
+        case (key=3):
+            observer.broadcast(e.GREENRELEASED)
+            break;
+    }
+}
+
+export const fn = (data) =>{
+    switch(data){
+        case (e.YELLOWPRESSED):
+            simon.dispatch('readUserInput',[0])
+            break;
+        case (e.REDPRESSED):
+            simon.dispatch('readUserInput',[1])
+            break;
+        case (e.BLUEPRESSED):
+            simon.dispatch('readUserInput',[2])
+            break;
+        case (e.GREENPRESSED):
+            simon.dispatch('readUserInput',[3])
+            break;
+        case (e.POWERPRESSED):
+            simon.dispatch('switch')
+            break;
+        case (e.PLAYPRESSED):
+            simon.dispatch('startGame')
+            break;
+        case (e.USERRESET):
+            simon.dispatch('reset')
+        default:
+            break;
+    }
+}
+
 function createObservable() {
     return{
        subscribers : [],
 
-    subscribe(fn){
-        this.subscribers.push(fn);
-    },
+        subscribe(fn){
+            this.subscribers.push(fn);
+        },
 
-    unsuscribe(fn){
-        this.suscribers = this.suscribers.filter((item) => item !== fn);
-    },
+        unsuscribe(fn){
+            this.suscribers = this.suscribers.filter((item) => item !== fn);
+        },
 
-    broadcast(data) {
-        for (let i = 0; i< this.subscribers.length; i++){
-            this.subscribers[i](data);
+        broadcast(data) {
+            for (let i = 0; i< this.subscribers.length; i++){
+                this.subscribers[i](data);
+            }
         }
     }
-    }
 }
-
-
