@@ -1,4 +1,4 @@
-import {events as e} from './events.js'
+import {events as e} from './events.js';
 export const dataCenter = {
 
     speed : 1.2,
@@ -32,22 +32,22 @@ export const dataCenter = {
     },
     reset: function(){
         this.init();
-        localStorage.setItem('record',0)
-        this.update()
+        localStorage.setItem('record',0);
+        this.update();
     },
     levelUp: function(){
-        this.addStep()
-        this.resetUserSteps()
-        this.addSpeed()
-        this.actualLevel +=1
+        this.addStep();
+        this.resetUserSteps();
+        this.addSpeed();
+        this.actualLevel +=1;
         this.update();
     },
     addUserStep: function(){
-        this.userSteps++
+        this.userSteps++;
         this.update();
     },
     addSpeed: function(){
-        this.speed-= 0.1
+        this.speed-= 0.1;
         this.update();
     },
     addStep: function(){
@@ -63,11 +63,11 @@ export const dataCenter = {
         this.update();
     },
     update: function(){
-        localStorage.setItem('speed',this.speed)
-        localStorage.setItem('steps',this.steps)
-        localStorage.setItem('userSteps',this.userSteps)
-        localStorage.setItem('sequence',this.sequence)
-        localStorage.setItem('actualLevel',this.actualLevel)
+        localStorage.setItem('speed',this.speed);
+        localStorage.setItem('steps',this.steps);
+        localStorage.setItem('userSteps',this.userSteps);
+        localStorage.setItem('sequence',this.sequence);
+        localStorage.setItem('actualLevel',this.actualLevel);
     }
 }
 
@@ -87,11 +87,11 @@ export const fn = (data) =>{
             break;
         case (data = e.LOADPAGE):
             dataCenter.init();
-            localStorage.setItem('state','OFF')
+            localStorage.setItem('state','OFF');
             break;
         case (data = e.WRONGINPUT):
             if(dataCenter.getActualLevel>localStorage.getItem('record')){
-               localStorage.setItem('record',dataCenter.getActualLevel)
+               localStorage.setItem('record',dataCenter.getActualLevel);
             }
             dataCenter.init();
     }

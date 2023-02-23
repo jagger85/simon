@@ -12,19 +12,19 @@ export function play(box,duration){
     switch (box){
         case 'box1':
             o.frequency.value =261.6;
-            break
+            break;
 
         case 'box2':
             o.frequency.value = 311.1;
-            break
+            break;
 
         case 'box3':
             o.frequency.value = 370;
-            break
+            break;
 
         case 'box4':
             o.frequency.value = 440;
-            break
+            break;
     }
     if(enable)o.start();
 }
@@ -55,19 +55,19 @@ export const fn = (data) =>{
         break;
 
         case (data = e.REDPRESSED):
-            play('box1',1)
+            play('box1',1);
         break;
 
         case (data = e.YELLOWPRESSED):
-            play('box2',1)
+            play('box2',1);
         break;
 
         case (data = e.GREENPRESSED):
-            play('box3',1)
+            play('box3',1);
         break;
 
         case (data = e.BLUEPRESSED):
-            play('box4',1)
+            play('box4',1);
         break;
     }
 }

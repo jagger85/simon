@@ -7,18 +7,18 @@ const notes = {
 };
 
 function printNote(){
-    if(localStorage.getItem('note')== undefined) localStorage.setItem('note',1)
+    if(localStorage.getItem('note')== undefined) localStorage.setItem('note',1);
     document.getElementById('sticky-content').innerHTML = getNote(localStorage.getItem('note'));
 
 }
 
 function nextNote(){
     if(localStorage.getItem('note') > 2){
-        localStorage.setItem('note',1)
+        localStorage.setItem('note',1);
         document.getElementById('sticky-content').innerHTML = getNote(localStorage.getItem('note'));
     }
     else{
-        localStorage.setItem('note',parseInt(localStorage.getItem('note'))+1)
+        localStorage.setItem('note',parseInt(localStorage.getItem('note'))+1);
         document.getElementById('sticky-content').innerHTML = getNote(localStorage.getItem('note'));
     }
 }
@@ -26,13 +26,13 @@ function nextNote(){
 function getNote(note){
     switch(note){
         case (note ='1'):
-            return notes[1]
+            return notes[1];
         case (note='2'):
             return notes[2] + (localStorage.getItem('record') ?? 0) +'<br>'+ getSentece(localStorage.getItem('record'));
         case (note='3'):
             return notes[3];
         default:
-            return undefined
+            return undefined;
     }
 }
 

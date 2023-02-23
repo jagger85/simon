@@ -33,6 +33,6 @@ export const fn = (data) =>{
 function showValue(string){
     display.value = string;
     setTimeout(()=>{
-        display.value = ''
+        display.value = '';
     },2000)
 }

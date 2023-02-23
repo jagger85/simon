@@ -1,39 +1,39 @@
-import {box1 as yellow, box2 as red, box3 as blue, box4 as green} from '../models/models.js'
-import {events as e} from './events.js'
+import {box1 as yellow, box2 as red, box3 as blue, box4 as green} from '../models/models.js';
+import {events as e} from './events.js';
 export const fn = (data) =>{
 
     switch (data){
 
         case (data = e.GREENPRESSED): 
-            pressKey(green)
+            pressKey(green);
             break;
 
         case (data = e.BLUEPRESSED): 
-            pressKey(blue)
+            pressKey(blue);
             break;
 
         case (data = e.YELLOWPRESSED): 
-            pressKey(yellow)
+            pressKey(yellow);
             break;
 
         case (data = e.REDPRESSED): 
-            pressKey(red)
+            pressKey(red);
             break;
 
         case (data = e.GREENRELEASED): 
-            releaseKey(green)
+            releaseKey(green);
             break;
 
         case (data = e.BLUERELEASED): 
-            releaseKey(blue)
+            releaseKey(blue);
             break;
 
         case (data = e.YELLOWRELEASED): 
-            releaseKey(yellow)
+            releaseKey(yellow);
             break;
 
         case (data = e.REDRELEASED): 
-            releaseKey(red)
+            releaseKey(red);
             break;
     }
 }
@@ -44,5 +44,5 @@ function pressKey(key){
 }
 
 function releaseKey(key){
-   key.classList.remove('active','pressed')
+   key.classList.remove('active','pressed');
 }

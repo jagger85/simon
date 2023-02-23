@@ -21,33 +21,33 @@ let simon ={
         OFF:{
             switch: function(){
                 simon.changeState('STANDBY');
-                observer.broadcast(e.ON)
+                observer.broadcast(e.ON);
             }
         },
         STANDBY:{
             switch: function(){
                 simon.changeState('OFF');
-                observer.broadcast(e.OFF)
+                observer.broadcast(e.OFF);
             },
             startGame: function(){
                 simon.changeState('DISPLAYING');
                 simon.dispatch('displayPattern');
             },
             reset: function(){
-                simon.changeState('RESETING')
-                simon.dispatch('resetValues')
+                simon.changeState('RESETING');
+                simon.dispatch('resetValues');
             }
         },
         DISPLAYING:{
             switch: function(){
-                simon.changeState('OFF')
-                observer.broadcast(e.OFF)
+                simon.changeState('OFF');
+                observer.broadcast(e.OFF);
             },
             displayPattern: function(){
-                observer.broadcast(e.SEQUENCESTARTING)
+                observer.broadcast(e.SEQUENCESTARTING);
                 let n=0;
                 setTimeout(()=>{
-                    step()
+                    step();
                     function step(){
                             if(localStorage.getItem('state')=='OFF')return;
                             pressKey(data.getSequence[n]);
@@ -56,9 +56,9 @@ let simon ={
                             n++
 
                         setTimeout(()=>{
-                            data.getSequence[n]!=undefined ? step() : simon.changeState('READING')      
-                            },100)
-                        },data.getSpeed*1000)
+                            data.getSequence[n]!=undefined ? step() : simon.changeState('READING');     
+                            },100);
+                        },data.getSpeed*1000);
                         }
                 },3000)}
             },
@@ -69,7 +69,7 @@ let simon ={
             },
             readUserInput: function(input){
                 if(input == data.getSequence[data.getUserSteps] ){
-                    data.addUserStep()
+                    data.addUserStep();
                     if (data.getSequence[data.getUserSteps] == undefined){
                         observer.broadcast(e.LEVELUP);
                         simon.changeState('DISPLAYING');
@@ -79,18 +79,18 @@ let simon ={
                     else{
                         observer.broadcast(e.WRONGINPUT);
                         setTimeout(()=>{
-                            observer.broadcast(e.GAMEOVER)
+                            observer.broadcast(e.GAMEOVER);
                         },2000);
                         setTimeout(()=>{
                             simon.changeState('STANDBY');
-                        },4000)
+                        },4000);
                     }
             }
 
         },
         RESETING:{
             resetValues: function(){
-                observer.broadcast(e.RESET)
+                observer.broadcast(e.RESET);
                 let pattern= [0,2,3,1,0,2,3,1,0];
                 let n = 0;
                 step();
@@ -99,29 +99,29 @@ let simon ={
                     setTimeout(()=>{
                         releaseKey(pattern[n]);
                         n++
-                       if(pattern[n]!=undefined)step() 
-                    },200)
+                       if(pattern[n]!=undefined)step();
+                    },200);
                 }
                 setTimeout(()=>{
                     simon.changeState('OFF');
-                    simon.dispatch('switch')
-                },5000)
+                    simon.dispatch('switch');
+                },5000);
               
             }
         }
     },
     dispatch(actionName,...args){
         const actions = this.transitions[this.state];
-        const action = this.transitions[this.state][actionName]
+        const action = this.transitions[this.state][actionName];
 
         if(action){
             action.apply(simon,...args);
         } else {
-            console.log(actionName + ' action not valid for current state ='+this.state)
+            console.log(actionName + ' action not valid for current state ='+this.state);
         }
     },
     changeState(newState){
-        localStorage.setItem('state',newState)
+        localStorage.setItem('state',newState);
         this.state = newState;
     }
 }
@@ -129,19 +129,19 @@ let simon ={
 function pressKey(key){
     switch (key){
         case (key=0):
-            observer.broadcast(e.YELLOWPRESSED)
+            observer.broadcast(e.YELLOWPRESSED);
             break;
 
         case (key=1):
-            observer.broadcast(e.REDPRESSED)
+            observer.broadcast(e.REDPRESSED);
             break;
 
         case (key=2):
-            observer.broadcast(e.BLUEPRESSED)
+            observer.broadcast(e.BLUEPRESSED);
             break;
 
         case (key=3):
-            observer.broadcast(e.GREENPRESSED)
+            observer.broadcast(e.GREENPRESSED);
             break;
     }
 }
@@ -149,19 +149,19 @@ function pressKey(key){
 function releaseKey(key){
     switch (key){
         case (key=0):
-            observer.broadcast(e.YELLOWRELEASED)
+            observer.broadcast(e.YELLOWRELEASED);
             break;
 
         case (key=1):
-            observer.broadcast(e.REDRELEASED)
+            observer.broadcast(e.REDRELEASED);
             break;
 
         case (key=2):
-            observer.broadcast(e.BLUERELEASED)
+            observer.broadcast(e.BLUERELEASED);
             break;
 
         case (key=3):
-            observer.broadcast(e.GREENRELEASED)
+            observer.broadcast(e.GREENRELEASED);
             break;
     }
 }
@@ -169,25 +169,25 @@ function releaseKey(key){
 export const fn = (data) =>{
     switch(data){
         case (e.YELLOWPRESSED):
-            simon.dispatch('readUserInput',[0])
+            simon.dispatch('readUserInput',[0]);
             break;
         case (e.REDPRESSED):
-            simon.dispatch('readUserInput',[1])
+            simon.dispatch('readUserInput',[1]);
             break;
         case (e.BLUEPRESSED):
-            simon.dispatch('readUserInput',[2])
+            simon.dispatch('readUserInput',[2]);
             break;
         case (e.GREENPRESSED):
-            simon.dispatch('readUserInput',[3])
+            simon.dispatch('readUserInput',[3]);
             break;
         case (e.POWERPRESSED):
-            simon.dispatch('switch')
+            simon.dispatch('switch');
             break;
         case (e.PLAYPRESSED):
-            simon.dispatch('startGame')
+            simon.dispatch('startGame');
             break;
         case (e.USERRESET):
-            simon.dispatch('reset')
+            simon.dispatch('reset');
         default:
             break;
     }
