@@ -26,5 +26,8 @@ export const events = {
     REDRELEASED:'redReleased',
     BLUERELEASED:'blueReleased',
     GREENRELEASED:'greenReleased',
+    MENUSTARTPRESSED:'menuStartPressed',
+    MENUOPTIONSPRESSED:'menuOptionsPressed',
+    BACKTOMENU:'backToMenu',
 
 }

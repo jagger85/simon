@@ -10,13 +10,18 @@
     box-sizing: border-box;
     margin: 0px;
 }
-
-main{
+Body{
   background-image: url('../assets/wood.jpg');
-  background-size: 50%;
-  height: 100vh;
-}
+  background-size: 40%;
 
+}
+main{
+  width: 200vw;
+}
+.game-container{
+  position:absolute;
+  left: 100vw;
+}
 .simon-container{
     background-image: url('../assets/plastic.png');
     width: 45rem ;
@@ -29,8 +34,7 @@ main{
       inset hsla(0,0%,0%, .25) 0 -1px 0px 7px, /* bottom SD */
       hsla(0,0%, 0%,.15) 0 -5px 6px 4px; /* outer SD */
     transition: color .2s;
-    margin-left: auto;
-    margin-right: auto;
+    
 }
 
 .metal {

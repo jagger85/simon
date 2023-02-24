@@ -11,7 +11,7 @@ import {dataCenter as data, fn as datacenter} from '../services/dataCenter.js'
 import {events as e} from '../scripts/events.js'
 import {fn as display} from '../models/display.js'
 import {fn as keys} from '../models/keys.js'
-import {fn as controlButtons} from '../models/controlButtons.js'
+import {fn as controlButtons} from '../models/simonControlButtons.js'
 import {fn as sound} from '../services/soundService.js'
 
 const observer = createObservable();

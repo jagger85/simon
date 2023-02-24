@@ -1,5 +1,5 @@
-import {events as e} from '../scripts/events.js';
-import {on,start,sound} from './models.js';
+import { events as e } from '../scripts/events.js';
+import { on,sound } from './models.js';
 
 export const fn = (data) =>{
     switch(data){
@@ -12,7 +12,9 @@ export const fn = (data) =>{
             break;        
         case (data = e.SOUNDPRESSED):
             sound.children[0].classList.add('green-glow');
-            break;        
+            break;
+        default:
+            break;
     }
 }
 

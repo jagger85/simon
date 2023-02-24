@@ -12,13 +12,13 @@
 </head>
 <body>
     <main id="main" >
-      <div class="menu-container">
+      <div id="menu-container">
         <div class="button-container">
           <button id="menu-start" class="menu-button">Start</button>
           <button id="menu-options" class="menu-button">Options</button>
+        </div>
       </div>
-      </div>
-
+        <div class="game-container" id="game-container">
         <div class="simon-container" id="simon">
             <div class="simon-control-container metal radial">
                     <div class="title">
@@ -58,24 +58,26 @@
             <div class="box 3 green" id="box4"></div>
         </div> 
         <div id="note-container" class="sticky-container">
-            <div class="sticky-outer">
-              <div class="sticky">
-                <svg width="0" height="0">
-                  <defs>
-                    <clipPath id="stickyClip" clipPathUnits="objectBoundingBox">
-                      <path
-                        d="M 0 0 Q 0 0.69, 0.03 0.96 0.03 0.96, 1 0.96 Q 0.96 0.69, 0.96 0 0.96 0, 0 0"
-                        stroke-linejoin="round"
-                        stroke-linecap="square"
-                      />
-                    </clipPath>
-                  </defs>
-                </svg>
-                <div id="sticky-content" class="sticky-content">
-                </div>
+          <div class="sticky-outer">
+            <div class="sticky">
+              <svg width="0" height="0">
+                <defs>
+                  <clipPath id="stickyClip" clipPathUnits="objectBoundingBox">
+                    <path
+                      d="M 0 0 Q 0 0.69, 0.03 0.96 0.03 0.96, 1 0.96 Q 0.96 0.69, 0.96 0 0.96 0, 0 0"
+                      stroke-linejoin="round"
+                      stroke-linecap="square"
+                    />
+                  </clipPath>
+                </defs>
+              </svg>
+              <div id="sticky-content" class="sticky-content">
               </div>
             </div>
-          </div>    
+          </div>
+        </div> 
+        <button id="back-to-menu">GO BACK</button>  
+      </div>
     </main>
     <script src="./services/handler.js" type="module"></script>
 </body>

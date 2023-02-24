@@ -10,6 +10,7 @@ import { events as e } from '../scripts/events.js';
 import { fn as dataCenter} from './dataCenter.js';
 import { fn as keys } from '../models/keys.js';
 import { fn as simon } from '../scripts/simon.js';
+import { fn as menuButtons} from '../models/menuButtons.js'
 
 let lastClicked = 0;
 let clickedAt = 0;
@@ -21,8 +22,26 @@ observer.subscribe(simon);
 observer.subscribe(dataCenter);
 observer.subscribe(notes);
 observer.subscribe(sound);
+observer.subscribe(menuButtons)
+
 observer.broadcast(e.LOADPAGE);
 
+/**
+ * Menu handler
+ */
+document.querySelector('#menu-start').addEventListener('click',()=>{
+    observer.broadcast(e.MENUSTARTPRESSED);
+})
+document.querySelector('#menu-options').addEventListener('click',()=>{
+    observer.broadcast(e.MENUOPTIONSPRESSED);
+})
+document.querySelector('#back-to-menu').addEventListener('click',()=>{
+    observer.broadcast(e.BACKTOMENU);
+})
+
+/**
+ * Simon handler
+ */
 document.querySelector('#control-on').addEventListener('click',()=>{
     observer.broadcast(e.POWERPRESSED);
 })
