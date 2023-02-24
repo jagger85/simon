@@ -4,12 +4,12 @@
  * @param {date} lastClicked & @param {date} clickedAt used to detect a long press @see {@link lastClicked}
 */ 
 
-import { fn as sound} from '../services/soundService.js'
-import { fn as notes } from '../../models/notes.js';
-import { events as e } from '../services/events.js';
-import { fn as dataCenter} from '../services/dataCenter.js';
-import { fn as keys } from '../../models/keys.js';
-import { fn as simon } from './simon.js';
+import { fn as sound} from './soundService.js'
+import { fn as notes } from '../models/notes.js';
+import { events as e } from '../scripts/events.js';
+import { fn as dataCenter} from './dataCenter.js';
+import { fn as keys } from '../models/keys.js';
+import { fn as simon } from '../scripts/simon.js';
 
 let lastClicked = 0;
 let clickedAt = 0;
@@ -23,16 +23,16 @@ observer.subscribe(notes);
 observer.subscribe(sound);
 observer.broadcast(e.LOADPAGE);
 
-on.addEventListener('click',()=>{
+document.querySelector('#control-on').addEventListener('click',()=>{
     observer.broadcast(e.POWERPRESSED);
 })
 
-start.addEventListener('mouseup',()=>{
+document.querySelector('#control-start').addEventListener('mouseup',()=>{
     lastClicked = new Date();
     observer.broadcast(e.PLAYPRESSED);
 })
 
-start.addEventListener('mousedown',()=>{
+document.querySelector('#control-start').addEventListener('mousedown',()=>{
     clickedAt = new Date();
     setTimeout(()=>{
         if(clickedAt>lastClicked && localStorage.getItem('state') != 'OFF'){
@@ -40,7 +40,7 @@ start.addEventListener('mousedown',()=>{
         }
     },3000)
 })
- document.querySelector('#sound').addEventListener('click',()=>{
+ document.querySelector('#control-sound').addEventListener('click',()=>{
      observer.broadcast(e.SOUNDPRESSED);
 })
 

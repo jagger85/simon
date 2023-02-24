@@ -8,12 +8,13 @@
 }
 *{
     box-sizing: border-box;
+    margin: 0px;
 }
 
-body {
-    background-image: url('../assets/wood.jpg');
-    background-size: 30%;
-    
+main{
+  background-image: url('../assets/wood.jpg');
+  background-size: 50%;
+  height: 100vh;
 }
 
 .simon-container{
@@ -74,7 +75,6 @@ body {
     border: 5px solid black;
     left: 25%;
     top: 25%;
-    
 }
 
 .game-name{
@@ -100,20 +100,13 @@ body {
   border-radius: 5px;
   padding: 0.5rem;
 }
-button{
+.control-button{
   border-radius: 50%;
   width: 2rem ;
   height: 2rem;
-}
-#start{
   background-color:grey;
 }
-#sound{
-  background-color: grey;
-}
-#on{
-  background-color: grey;
-}
+
 .bi-power{
   color:darkred;
   font-size: large;
@@ -222,14 +215,13 @@ button{
   
   
 }
-
 .buttons {  display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    "on start reset";
+    "on start sound";
   grid-area: buttons;
   margin-bottom: 5rem;
 }
@@ -285,27 +277,27 @@ button{
   grid-area: startButton;
 }
 
-.reset {  display: grid;
+.sound {  display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    "resetText"
-    "resetButton";
-  grid-area: reset;
+    "soundText"
+    "soundButton";
+  grid-area: sound;
   margin-left: auto;
   margin-right: auto;
 }
 
-.resetText {
-  grid-area: resetText;
+.soundText {
+  grid-area: soundText;
   margin-left: auto;
   margin-right: auto;
 }
 
-.resetButton {
-  grid-area: resetButton;
+.soundButton {
+  grid-area: soundButton;
   margin-left: auto;
   margin-right: auto;
 }

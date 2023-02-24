@@ -6,6 +6,7 @@
 .sticky-container {
     max-width: 270px;
     position: relative;
+    margin-left: 4%;
   }
   
   .sticky-outer {
@@ -21,6 +22,7 @@
     left: 0;
     right: 0;
     bottom: 0;
+    user-select: none;
   }
   
   /* Shadow behind the sticky note */

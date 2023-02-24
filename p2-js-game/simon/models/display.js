@@ -1,5 +1,5 @@
 import { display } from "./models.js";
-import { events as e } from "../services/events.js";
+import { events as e } from "../scripts/events.js";
 
 export const fn = (data) =>{
     switch(data){

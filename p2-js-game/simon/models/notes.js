@@ -1,4 +1,4 @@
-import { events as e } from "../simon/services/events.js";
+import { events as e } from "../scripts/events.js";
 
 const notes = {
     1 : "How to play:<br>Train your memory and <br>remember the pattern <br>Don't forget to switch it on <br>Enjoy!",

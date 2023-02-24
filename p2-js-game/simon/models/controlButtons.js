@@ -1,4 +1,4 @@
-import {events as e} from '../services/events.js';
+import {events as e} from '../scripts/events.js';
 import {on,start,sound} from './models.js';
 
 export const fn = (data) =>{

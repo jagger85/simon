@@ -6,11 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/simon.css">
     <link rel="stylesheet" href="./styles/sticky.css">
+    <link rel="stylesheet" href="./styles/animations.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <title>Simon</title>
 </head>
 <body>
-    <main id="main">
+    <main id="main" >
+      <div class="menu-container">
+        <div class="button-container">
+          <button id="menu-start" class="menu-button">Start</button>
+          <button id="menu-options" class="menu-button">Options</button>
+      </div>
+      </div>
+
         <div class="simon-container" id="simon">
             <div class="simon-control-container metal radial">
                     <div class="title">
@@ -20,28 +28,30 @@
                         <input type="text" id='display' disabled="true">
                     </div>
                     <div class="buttons">
+
                       <div class="on">
                         <div class="onText"></div>
                         <div class="onButton">
-                            <button id="on"><i id='power-icon' class="bi bi-power"></i></button>
+                            <button id="control-on" class="control-button"><i id='power-icon' class="bi bi-power"></i></button>
                         </div>
                       </div>
+
                       <div class="start">
                         <div class="startText"></div>
                         <div class="startButton">
-                            <button id="start"><i class="bi bi-play"></i></button>
+                            <button id="control-start" class="control-button"><i class="bi bi-play"></i></button>
                         </div>
                       </div>
-                      <div class="reset">
-                        
-                        <div class="resetButton">
-                          
-                            <button id="sound"><i id='sound-icon' class="bi bi-volume-up-fill"></i></button>
 
+                      <div class="sound">
+                        <div class="soundText"></div>
+                        <div class="soundButton">
+                            <button id="control-sound" class="control-button"><i id='sound-icon' class="bi bi-volume-up-fill"></i></button>
                         </div>
-                      </div>
                     </div>
+
             </div>
+          </div>
             <div class="box 0 yellow" id="box1" ></div>
             <div class="box 1 red" id="box2"></div>
             <div class="box 2 blue" id="box3"></div>
@@ -67,6 +77,6 @@
             </div>
           </div>    
     </main>
-    <script src="./scripts/handler.js" type="module"></script>
+    <script src="./services/handler.js" type="module"></script>
 </body>
 </html>

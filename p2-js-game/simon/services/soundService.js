@@ -1,4 +1,4 @@
-import {events as e} from './events.js';
+import {events as e} from '../scripts/events.js';
 const context = new AudioContext();
 let enable = false;
 export function play(box,duration){

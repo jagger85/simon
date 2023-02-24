@@ -4,7 +4,7 @@
  * in the game.
  */
 
-import {events as e} from './events.js';
+import {events as e} from '../scripts/events.js';
 
 export const dataCenter = {
     speed : 1.2,
