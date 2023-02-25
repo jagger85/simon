@@ -10,27 +10,46 @@
     box-sizing: border-box;
     margin: 0px;
 }
-Body{
-overflow: hidden;
+.site-wrapper{
+  overflow: hidden;
 }
+
 main{
   width: 200vw;
   height: 100vh;
   background-image: url('../assets/wood.jpg');
   background-size: 30vh;
   display: flex;
+  overflow: hidden;
+
+}
+#menu-container{
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+
+}
+.button-container{
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+.menu-button{
+  padding: 10px;
 }
 .game-container{
-  position:absolute;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
   left: 100vw;
- 
+  align-content: center;
+
 }
 .simon-container{
     background-image: url('../assets/plastic.png');
-    width: 45rem ;
-    height: 45rem;
-    max-width: 90vw;
-    max-height: 90vw;
+    width: 90vw;
+    height: 90vw;
     border-radius: 50%;
     position: relative;
     background-color: hsl(0,0%,90%);
@@ -39,7 +58,8 @@ main{
       inset hsla(0,0%,0%, .25) 0 -1px 0px 7px, /* bottom SD */
       hsla(0,0%, 0%,.15) 0 -5px 6px 4px; /* outer SD */
     transition: color .2s;
-    
+  margin-left: auto;
+  margin-right:auto;
 }
 
 .metal {

@@ -3,24 +3,31 @@ import { events as e } from "../scripts/events.js";
 
 export const fn = (data) =>{
     switch(data){
+        
         case (data = e.ON):
             showValue('WELCOME');
             break;
+
         case (data = e.OFF):
             showValue('BYE');
             break;
+
         case (data = e.LEVELUP):
             showValue('LEVEL UP');
             break;
+
         case (data = e.GAMEOVER):
             showValue('GAME OVER');
             break;
+
         case (data = e.WRONGINPUT):
             showValue('WRONG INPUT');
             break;
+
         case (data = e.RESET):
             showValue('RESETING...')
             break;
+
         case (data = e.SEQUENCESTARTING):
             showValue('GET READY!')
             break;

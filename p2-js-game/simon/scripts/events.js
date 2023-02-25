@@ -4,7 +4,6 @@
  */
 
 export const events = {
-
     ON:'SimonOn',
     OFF:'machineOFF',
     LEVELUP:'levelUp',
@@ -29,5 +28,4 @@ export const events = {
     MENUSTARTPRESSED:'menuStartPressed',
     MENUOPTIONSPRESSED:'menuOptionsPressed',
     BACKTOMENU:'backToMenu',
-
 }

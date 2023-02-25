@@ -4,12 +4,12 @@
  * @param {date} lastClicked & @param {date} clickedAt used to detect a long press @see {@link lastClicked}
 */ 
 
-import { fn as sound} from './soundService.js'
+import { fn as sound} from '../services/soundService.js'
 import { fn as notes } from '../models/notes.js';
-import { events as e } from '../scripts/events.js';
-import { fn as dataCenter} from './dataCenter.js';
+import { events as e } from './events.js';
+import { fn as dataCenter} from '../services/dataCenter.js';
 import { fn as keys } from '../models/keys.js';
-import { fn as simon } from '../scripts/simon.js';
+import { fn as simon } from './simon.js';
 import { fn as menuButtons} from '../models/menuButtons.js'
 
 let lastClicked = 0;
