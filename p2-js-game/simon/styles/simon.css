@@ -11,21 +11,26 @@
     margin: 0px;
 }
 Body{
-  background-image: url('../assets/wood.jpg');
-  background-size: 40%;
-
+overflow: hidden;
 }
 main{
   width: 200vw;
+  height: 100vh;
+  background-image: url('../assets/wood.jpg');
+  background-size: 30vh;
+  display: flex;
 }
 .game-container{
   position:absolute;
   left: 100vw;
+ 
 }
 .simon-container{
     background-image: url('../assets/plastic.png');
     width: 45rem ;
     height: 45rem;
+    max-width: 90vw;
+    max-height: 90vw;
     border-radius: 50%;
     position: relative;
     background-color: hsl(0,0%,90%);
@@ -82,20 +87,19 @@ main{
 }
 
 .game-name{
-  font-size: 3rem;
+  font-size: 4vh;
   text-align: center;
   font-family: holye;
   user-select: none;
-  height: 8rem;
+
 }
 
 #display{
   background-color: black;
   color:red;
-  font-size: 2rem;
+  font-size: 1.6vh;
   font-family: digital;
   user-select: none;
-  width: 15rem;
   box-shadow: inset rgb(66, 66, 66) 0  0px 0px 4px, /* border */
   inset hsla(0,0%,15%, .8) 0 -1px 5px 4px, /* soft SD */
   inset hsla(0,0%,0%, .25) 0 -1px 0px 7px, /* bottom SD */
@@ -103,17 +107,22 @@ main{
   transition: color .2s;
   border-radius: 5px;
   padding: 0.5rem;
+  width: 80%;
+  height: 50%;
 }
 .control-button{
   border-radius: 50%;
-  width: 2rem ;
-  height: 2rem;
+  width: 2.5vh ;
+  height: 2.5vh ;
   background-color:grey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .bi-power{
   color:darkred;
-  font-size: large;
+  font-size: 1vh;
 }
 .green-glow{
   color:greenyellow
@@ -193,116 +202,25 @@ main{
   background-color: rgb(0, 180, 0);
   filter: drop-shadow(31px 14px 70px #3aed087b);
 }
-
-.simon-control-container {  
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1.4fr 1.1fr 0.5fr;
-  gap: 0px 0px;
-  grid-auto-flow: row;
-  grid-template-areas:
-    "title"
-    "display"
-    "buttons";
+.title{
+  height: 40%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
 }
-
-.title {
-   grid-area: title; 
-  margin-top: 3rem;
-  height: 6rem;
-  }
-
-.display {
-  grid-area: display;
-  margin-left: auto;
-  margin-right: auto;
-  
-  
+.display{
+  height: 30%;
+  justify-content: center;
+  display: flex;
 }
-.buttons {  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr;
-  gap: 0px 0px;
-  grid-auto-flow: row;
-  grid-template-areas:
-    "on start sound";
-  grid-area: buttons;
-  margin-bottom: 5rem;
-}
-
-.on {  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 0px 0px;
-  grid-auto-flow: row;
-  grid-template-areas:
-    "onText"
-    "onButton";
-  grid-area: on;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.onText {
-  grid-area: onText;
-  margin-left: auto;
-  margin-right: auto;
+#display{
 
 }
-
-.onButton {
-  margin-left: auto;
-  margin-right: auto;
-  grid-area: onButton;
+.buttons{
+  display: flex;
+  justify-content: space-evenly;
+  height: 30%;
 }
 
-.start {  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 0px 0px;
-  grid-auto-flow: row;
-  grid-template-areas:
-    "startText"
-    "startButton";
-  grid-area: start;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.startText {
-  margin-left: auto;
-  margin-right: auto;
-  grid-area: startText;
-}
-
-.startButton {
-  margin-left: auto;
-  margin-right: auto;
-  grid-area: startButton;
-}
-
-.sound {  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 0px 0px;
-  grid-auto-flow: row;
-  grid-template-areas:
-    "soundText"
-    "soundButton";
-  grid-area: sound;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.soundText {
-  grid-area: soundText;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.soundButton {
-  grid-area: soundButton;
-  margin-left: auto;
-  margin-right: auto;
-}
 

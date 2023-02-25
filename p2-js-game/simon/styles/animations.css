@@ -1,5 +1,5 @@
 .moveLeft{
-    transform: translate(-100vw);
+    transform: translate(-90vw);
     transition: transform 330ms ease-in-out;
 }
 .moveRight{
