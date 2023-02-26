@@ -51,7 +51,7 @@ let simon ={
                 observer.broadcast(e.OFF);
             },
             displayPattern: function(){
-                observer.broadcast(e.SEQUENCESTARTING);
+                observer.broadcast(e.SEQUENCE_STARTING);
                 let n=0;
                 setTimeout(()=>{
                     step();
@@ -78,15 +78,15 @@ let simon ={
                 if(input == data.getSequence[data.getUserSteps] ){
                     data.addUserStep();
                     if (data.getSequence[data.getUserSteps] == undefined){
-                        observer.broadcast(e.LEVELUP);
+                        observer.broadcast(e.LEVEL_UP);
                         simon.changeState('DISPLAYING');
                         simon.dispatch('displayPattern');
                     }
                 }
                     else{
-                        observer.broadcast(e.WRONGINPUT);
+                        observer.broadcast(e.WRONG_INPUT);
                         setTimeout(()=>{
-                            observer.broadcast(e.GAMEOVER);
+                            observer.broadcast(e.GAME_OVER);
                         },2000);
                         setTimeout(()=>{
                             simon.changeState('STANDBY');
@@ -136,19 +136,19 @@ let simon ={
 function pressKey(key){
     switch (key){
         case (key=0):
-            observer.broadcast(e.YELLOWPRESSED);
+            observer.broadcast(e.YELLOW_PRESSED);
             break;
 
         case (key=1):
-            observer.broadcast(e.REDPRESSED);
+            observer.broadcast(e.RED_PRESSED);
             break;
 
         case (key=2):
-            observer.broadcast(e.BLUEPRESSED);
+            observer.broadcast(e.BLUE_PRESSED);
             break;
 
         case (key=3):
-            observer.broadcast(e.GREENPRESSED);
+            observer.broadcast(e.GREEN_PRESSED);
             break;
     }
 }
@@ -156,44 +156,44 @@ function pressKey(key){
 function releaseKey(key){
     switch (key){
         case (key=0):
-            observer.broadcast(e.YELLOWRELEASED);
+            observer.broadcast(e.YELLOW_RELEASED);
             break;
 
         case (key=1):
-            observer.broadcast(e.REDRELEASED);
+            observer.broadcast(e.RED_RELEASED);
             break;
 
         case (key=2):
-            observer.broadcast(e.BLUERELEASED);
+            observer.broadcast(e.BLUE_RELEASED);
             break;
 
         case (key=3):
-            observer.broadcast(e.GREENRELEASED);
+            observer.broadcast(e.GREEN_RELEASED);
             break;
     }
 }
 
 export const fn = (data) =>{
     switch(data){
-        case (e.YELLOWPRESSED):
+        case (e.YELLOW_PRESSED):
             simon.dispatch('readUserInput',[0]);
             break;
-        case (e.REDPRESSED):
+        case (e.RED_PRESSED):
             simon.dispatch('readUserInput',[1]);
             break;
-        case (e.BLUEPRESSED):
+        case (e.BLUE_PRESSED):
             simon.dispatch('readUserInput',[2]);
             break;
-        case (e.GREENPRESSED):
+        case (e.GREEN_PRESSED):
             simon.dispatch('readUserInput',[3]);
             break;
-        case (e.POWERPRESSED):
+        case (e.POWER_PRESSED):
             simon.dispatch('switch');
             break;
-        case (e.PLAYPRESSED):
+        case (e.PLAY_PRESSED):
             simon.dispatch('startGame');
             break;
-        case (e.USERRESET):
+        case (e.USER_RESET):
             simon.dispatch('reset');
         default:
             break;

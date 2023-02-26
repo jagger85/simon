@@ -12,6 +12,7 @@ export const dataCenter = {
     userSteps:0,
     sequence : undefined,
     actualLevel: 0,
+    sound:false,
 
     get getSpeed(){
         return this.speed;
@@ -82,20 +83,20 @@ export const fn = (data) =>{
         case (data = e.ON):
             dataCenter.init();
             break;
-        case (data = e.SEQUENCESTARTING):
+        case (data = e.SEQUENCE_STARTING):
             dataCenter.createNewSequence();
             break;
-        case (data = e.LEVELUP):
+        case (data = e.LEVEL_UP):
             dataCenter.levelUp();
             break;
         case (data = e.RESET):
             dataCenter.reset();
             break;
-        case (data = e.LOADPAGE):
+        case (data = e.LOAD_PAGE):
             dataCenter.init();
             localStorage.setItem('state','OFF');
             break;
-        case (data = e.WRONGINPUT):
+        case (data = e.WRONG_INPUT):
             if(dataCenter.getActualLevel>localStorage.getItem('record')){
                localStorage.setItem('record',dataCenter.getActualLevel);
             }

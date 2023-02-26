@@ -4,35 +4,35 @@ export const fn = (data) =>{
 
     switch (data){
 
-        case (data = e.GREENPRESSED): 
+        case (data = e.GREEN_PRESSED): 
             pressKey(green);
             break;
 
-        case (data = e.BLUEPRESSED): 
+        case (data = e.BLUE_PRESSED): 
             pressKey(blue);
             break;
 
-        case (data = e.YELLOWPRESSED): 
+        case (data = e.YELLOW_PRESSED): 
             pressKey(yellow);
             break;
 
-        case (data = e.REDPRESSED): 
+        case (data = e.RED_PRESSED): 
             pressKey(red);
             break;
 
-        case (data = e.GREENRELEASED): 
+        case (data = e.GREEN_RELEASED): 
             releaseKey(green);
             break;
 
-        case (data = e.BLUERELEASED): 
+        case (data = e.BLUE_RELEASED): 
             releaseKey(blue);
             break;
 
-        case (data = e.YELLOWRELEASED): 
+        case (data = e.YELLOW_RELEASED): 
             releaseKey(yellow);
             break;
 
-        case (data = e.REDRELEASED): 
+        case (data = e.RED_RELEASED): 
             releaseKey(red);
             break;
     }

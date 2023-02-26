@@ -15,8 +15,15 @@
     <main id="main" >
       <div id="menu-container">
         <div class="button-container">
-          <button id="menu-start" class="menu-button">Start</button>
+          <button id="menu-start" class="menu-button"><span>S</span><span class="text-red">i</span><span class="text-blue">m</span><span class="text-green">o</span><span class="text-yellow">n</span>
           <button id="menu-options" class="menu-button">Options</button>
+
+        </div>
+        <div class="social-container">
+          <img id='instagram' class='social-logo' src="./assets/images/instagram.png" alt="instagram logo">
+          <img id='facebook' class='social-logo' src="./assets/images/facebook.png" alt="instagram logo">
+          <img id='twitter' class='social-logo' src="./assets/images/twitter.png" alt="instagram logo">
+          <img id='linkedin' class='social-logo' src="./assets/images/linkedin.png" alt="instagram logo">
         </div>
       </div>
         <div class="game-container" id="game-container">
@@ -45,7 +52,7 @@
                       <div class="sound">
                         <div class="soundText"></div>
                         <div class="soundButton">
-                            <button id="control-sound" class="control-button"><i id='sound-icon' class="bi bi-volume-up-fill"></i></button>
+                            <button id="sound-button" class="control-button"><i id='sound-icon' class="bi bi-volume-up-fill"></i></button>
                         </div>
                     </div>
             </div>
@@ -74,7 +81,7 @@
             </div>
           </div>
         </div> 
-        <button id="back-to-menu">GO BACK</button>  
+        <img src="./assets/images/arrow.png" id="back-to-menu"></img>  
       </div>
     </main>
     <script src="./scripts/handler.js" type="module"></script>

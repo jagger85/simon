@@ -24,76 +24,78 @@ observer.subscribe(notes);
 observer.subscribe(sound);
 observer.subscribe(menuButtons)
 
-observer.broadcast(e.LOADPAGE);
+observer.broadcast(e.LOAD_PAGE);
 
 /**
  * Menu handler
  */
 document.querySelector('#menu-start').addEventListener('click',()=>{
-    observer.broadcast(e.MENUSTARTPRESSED);
+    observer.broadcast(e.MENU_START_PRESSED);
 })
 document.querySelector('#menu-options').addEventListener('click',()=>{
-    observer.broadcast(e.MENUOPTIONSPRESSED);
+    observer.broadcast(e.MENU_OPTIONS_PRESSED);
 })
 document.querySelector('#back-to-menu').addEventListener('click',()=>{
-    observer.broadcast(e.BACKTOMENU);
+    observer.broadcast(e.BACK_TO_MENU);
 })
 
 /**
  * Simon handler
  */
 document.querySelector('#control-on').addEventListener('click',()=>{
-    observer.broadcast(e.POWERPRESSED);
+    observer.broadcast(e.POWER_PRESSED);
 })
 
 document.querySelector('#control-start').addEventListener('mouseup',()=>{
     lastClicked = new Date();
-    observer.broadcast(e.PLAYPRESSED);
+    observer.broadcast(e.PLAY_PRESSED);
 })
 
 document.querySelector('#control-start').addEventListener('mousedown',()=>{
     clickedAt = new Date();
     setTimeout(()=>{
         if(clickedAt>lastClicked && localStorage.getItem('state') != 'OFF'){
-            observer.broadcast(e.USERRESET);
+            observer.broadcast(e.USER_RESET);
         }
     },3000)
 })
- document.querySelector('#control-sound').addEventListener('click',()=>{
-     observer.broadcast(e.SOUNDPRESSED);
+ document.querySelector('#sound-button').addEventListener('click',()=>{
+     observer.broadcast(e.SOUND_PRESSED);
 })
 
+
 document.querySelector('#box1').addEventListener('mousedown',()=>{
-    observer.broadcast(e.YELLOWPRESSED);
+    observer.broadcast(e.YELLOW_PRESSED);
 })
+
 document.querySelector('#box2').addEventListener('mousedown',()=>{
-    observer.broadcast(e.REDPRESSED);
+    observer.broadcast(e.RED_PRESSED);
 })
 document.querySelector('#box3').addEventListener('mousedown',()=>{
-    observer.broadcast(e.BLUEPRESSED);
+    observer.broadcast(e.BLUE_PRESSED);
 })
 document.querySelector('#box4').addEventListener('mousedown',()=>{
-    observer.broadcast(e.GREENPRESSED);
+    observer.broadcast(e.GREEN_PRESSED);
 })
 
 document.querySelector('#box1').addEventListener('mouseup',()=>{
-    observer.broadcast(e.YELLOWRELEASED);
+    observer.broadcast(e.YELLOW_RELEASED);
 })
 
 document.querySelector('#box2').addEventListener('mouseup',()=>{
-    observer.broadcast(e.REDRELEASED);
+    observer.broadcast(e.RED_RELEASED);
 })
 
 document.querySelector('#box3').addEventListener('mouseup',()=>{
-    observer.broadcast(e.BLUERELEASED);
+    observer.broadcast(e.BLUE_RELEASED);
 })
 
 document.querySelector('#box4').addEventListener('mouseup',()=>{
-    observer.broadcast(e.GREENRELEASED);
+    observer.broadcast(e.GREEN_RELEASED);
 })
 
 document.getElementById('note-container').addEventListener('click',()=>{
-        observer.broadcast(e.NOTECLICKED);
+        observer.broadcast(e.NOTE_CLICKED);
 })
 
 function createObservable() {

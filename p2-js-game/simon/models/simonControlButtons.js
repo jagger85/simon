@@ -8,11 +8,9 @@ export const fn = (data) =>{
             break;        
         case (data = e.OFF):
             on.children[0].classList.remove('red-glow');
-            sound.children[0].classList.remove('green-glow');
+            sound.children[0].classList.remove('sound-active');
             break;        
-        case (data = e.SOUNDPRESSED):
-            sound.children[0].classList.add('green-glow');
-            break;
+
         default:
             break;
     }

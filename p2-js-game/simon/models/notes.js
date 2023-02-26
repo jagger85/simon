@@ -52,16 +52,16 @@ function getSentece(level){
 export const fn = (data) =>{
     
     switch(data){
-        case (data = e.NOTECLICKED):
+        case (data = e.NOTE_CLICKED):
             nextNote();
             break;
         case (data = e.ON):
             printNote();
             break;
-        case (data = e.LOADPAGE):
+        case (data = e.LOAD_PAGE):
             printNote();
             break;
-        case (data = e.GAMEOVER):
+        case (data = e.GAME_OVER):
             printNote();
             break;
         default:

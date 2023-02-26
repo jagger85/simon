@@ -1,11 +1,23 @@
 @font-face {
   font-family: holye;
-  src: url('../assets/Hoyle.ttf');
+  src: url('../assets/fonts/Hoyle.ttf');
 }
+
 @font-face{
   font-family: digital;
-  src: url('../assets/Digital-7.ttf')
+  src: url('../assets/fonts/Digital-7.ttf')
 }
+
+@font-face {
+  font-family: hand2;
+  src: url('../assets/fonts/Bonita.ttf');
+}
+
+@font-face {
+  font-family: hand3;
+  src: url('../assets/fonts/Hand2.ttf');
+}
+
 *{
     box-sizing: border-box;
     margin: 0px;
@@ -17,8 +29,8 @@
 main{
   width: 200vw;
   height: 100vh;
-  background-image: url('../assets/wood.jpg');
-  background-size: 30vh;
+  background-image: url('../assets/images/wood.jpg');
+  background-size: 50vh;
   display: flex;
   overflow: hidden;
 
@@ -28,16 +40,44 @@ main{
   width: 100vw;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 
 }
+
+.text-red{
+  color:red;
+}
+
+.text-blue{
+  color:blue;
+}
+
+.text-green{
+  color:green
+}
+
+.text-yellow{
+  color:yellow
+}
+
 .button-container{
   display: flex;
   flex-direction: column;
   padding: 10px;
 }
+
 .menu-button{
   padding: 10px;
+  font-family: hand3;
+  background-color: transparent;
+  border:none;
+  font-size: 7vh;
 }
+
+.social-logo{
+  width: 10vh;
+}
+
 .game-container{
   display: flex;
   flex-direction: column;
@@ -47,7 +87,9 @@ main{
 
 }
 .simon-container{
-    background-image: url('../assets/plastic.png');
+    background-image: url('../assets/images/plastic.png');
+    max-width: 650px;
+    max-height: 650px;
     width: 90vw;
     height: 90vw;
     border-radius: 50%;
@@ -117,7 +159,7 @@ main{
 #display{
   background-color: black;
   color:red;
-  font-size: 1.6vh;
+  font-size: 2vh;
   font-family: digital;
   user-select: none;
   box-shadow: inset rgb(66, 66, 66) 0  0px 0px 4px, /* border */
@@ -144,9 +186,20 @@ main{
   color:darkred;
   font-size: 1vh;
 }
-.green-glow{
-  color:greenyellow
+.sound-active{
+  color:greenyellow;
+
 }
+.sound-button-active{
+  -webkit-box-shadow:0px 0px 36px 16px rgba(85,255,0,0.15);
+  -moz-box-shadow: 0px 0px 36px 16px rgba(85,255,0,0.15);
+  box-shadow: 0px 0px 36px 16px rgba(85,255,0,0.15);
+}
+.control-button{
+  border: 2px solid rgb(70, 70, 70)
+}
+
+
 .red-glow{
   color:red;
 }
@@ -193,12 +246,15 @@ main{
 .yellow {
   background-color: yellow;
 }
+
 .red{
   background-color: red;
 }
+
 .green{
   background-color: green;
 }
+
 .blue{
   background-color: blue;
 }
@@ -234,13 +290,15 @@ main{
   justify-content: center;
   display: flex;
 }
-#display{
-
-}
 .buttons{
   display: flex;
   justify-content: space-evenly;
   height: 30%;
+}
+#back-to-menu{
+  width: 20vh;
+  height: 20vh;
+  margin-left: auto;
 }
 
 

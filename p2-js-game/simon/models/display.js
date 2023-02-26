@@ -12,15 +12,15 @@ export const fn = (data) =>{
             showValue('BYE');
             break;
 
-        case (data = e.LEVELUP):
+        case (data = e.LEVEL_UP):
             showValue('LEVEL UP');
             break;
 
-        case (data = e.GAMEOVER):
+        case (data = e.GAME_OVER):
             showValue('GAME OVER');
             break;
 
-        case (data = e.WRONGINPUT):
+        case (data = e.WRONG_INPUT):
             showValue('WRONG INPUT');
             break;
 
@@ -28,7 +28,7 @@ export const fn = (data) =>{
             showValue('RESETING...')
             break;
 
-        case (data = e.SEQUENCESTARTING):
+        case (data = e.SEQUENCE_STARTING):
             showValue('GET READY!')
             break;
 
