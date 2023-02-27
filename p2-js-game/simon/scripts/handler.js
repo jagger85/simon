@@ -29,11 +29,8 @@ observer.broadcast(e.LOAD_PAGE);
 /**
  * Menu handler
  */
-document.querySelector('#menu-start').addEventListener('click',()=>{
+document.querySelector('#go-to-game').addEventListener('click',()=>{
     observer.broadcast(e.MENU_START_PRESSED);
-})
-document.querySelector('#menu-options').addEventListener('click',()=>{
-    observer.broadcast(e.MENU_OPTIONS_PRESSED);
 })
 document.querySelector('#back-to-menu').addEventListener('click',()=>{
     observer.broadcast(e.BACK_TO_MENU);
@@ -94,7 +91,7 @@ document.querySelector('#box4').addEventListener('mouseup',()=>{
     observer.broadcast(e.GREEN_RELEASED);
 })
 
-document.getElementById('note-container').addEventListener('click',()=>{
+document.getElementById('simon-note-container').addEventListener('click',()=>{
         observer.broadcast(e.NOTE_CLICKED);
 })
 

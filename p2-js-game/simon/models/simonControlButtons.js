@@ -9,8 +9,7 @@ export const fn = (data) =>{
         case (data = e.OFF):
             on.children[0].classList.remove('red-glow');
             sound.children[0].classList.remove('sound-active');
-            break;        
-
+            break;   
         default:
             break;
     }

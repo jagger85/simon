@@ -8,18 +8,18 @@ const notes = {
 
 function printNote(){
     if(localStorage.getItem('note')== undefined) localStorage.setItem('note',1);
-    document.getElementById('sticky-content').innerHTML = getNote(localStorage.getItem('note'));
+    document.getElementById('simon-sticky-content').innerHTML = getNote(localStorage.getItem('note'));
 
 }
 
 function nextNote(){
     if(localStorage.getItem('note') > 2){
         localStorage.setItem('note',1);
-        document.getElementById('sticky-content').innerHTML = getNote(localStorage.getItem('note'));
+        document.getElementById('simon-sticky-content').innerHTML = getNote(localStorage.getItem('note'));
     }
     else{
         localStorage.setItem('note',parseInt(localStorage.getItem('note'))+1);
-        document.getElementById('sticky-content').innerHTML = getNote(localStorage.getItem('note'));
+        document.getElementById('simon-sticky-content').innerHTML = getNote(localStorage.getItem('note'));
     }
 }
 

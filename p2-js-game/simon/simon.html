@@ -5,8 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/simon.css">
+    <link rel="stylesheet" href="./styles/menu.css">
     <link rel="stylesheet" href="./styles/sticky.css">
     <link rel="stylesheet" href="./styles/animations.css">
+    <link rel="stylesheet" href="./styles/paper.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <title>Simon </title>
 </head>
@@ -14,17 +16,35 @@
 <body>
     <main id="main" >
       <div id="menu-container">
-        <div class="button-container">
-          <button id="menu-start" class="menu-button"><span>S</span><span class="text-red">i</span><span class="text-blue">m</span><span class="text-green">o</span><span class="text-yellow">n</span>
-          <button id="menu-options" class="menu-button">Options</button>
+        <div class="paper">
+          <div class="lines">
+              <div class="simon-title"><span>S</span><span class="text-red">i</span><span class="text-blue">m</span><span class="text-green">o</span><span class="text-yellow">n</span></div><br/>
+                <div class="text">
+                  Dear user,
+                  I'm writing to invite you to try out a new memory pattern game. As you may know, our memory is an essential part of our cognitive abilities, and improving it can bring many benefits to our daily lives.
+                  The game consists of various levels of increasing difficulty, and it's aimed at enhancing memory and concentration. Each level presents a pattern of colors, and you'll need to memorize and reproduce it accurately to move on to the next one.
+                  It's a fun way to challenge yourself and improve your performance over time.<br/>
+                </div>
+              <img src="/simon/assets/images/arrow.png" id="go-to-game"></img>
+              <div class="holes hole-top"></div>
+              <div class="holes hole-middle"></div>
+              <div class="holes hole-bottom"></div>
+          </div>
+        </div>
 
-        </div>
-        <div class="social-container">
-          <img id='instagram' class='social-logo' src="./assets/images/instagram.png" alt="instagram logo">
-          <img id='facebook' class='social-logo' src="./assets/images/facebook.png" alt="instagram logo">
-          <img id='twitter' class='social-logo' src="./assets/images/twitter.png" alt="instagram logo">
-          <img id='linkedin' class='social-logo' src="./assets/images/linkedin.png" alt="instagram logo">
-        </div>
+
+
+            <!-- <div class="social-container">
+              <div class="logos">
+              <img id='instagram' class='social-logo' src="./assets/images/instagram.png" alt="instagram logo">
+              <img id='facebook' class='social-logo' src="./assets/images/facebook.png" alt="instagram logo">
+              <img id='twitter' class='social-logo' src="./assets/images/twitter.png" alt="instagram logo">
+              <img id='linkedin' class='social-logo' src="./assets/images/linkedin.png" alt="instagram logo">
+              </div> -->
+
+
+
+
       </div>
         <div class="game-container" id="game-container">
         <div class="simon-container" id="simon">
@@ -62,7 +82,7 @@
             <div class="box 2 blue" id="box3"></div>
             <div class="box 3 green" id="box4"></div>
         </div> 
-        <div id="note-container" class="sticky-container">
+        <div id="simon-note-container" class="sticky-container">
           <div class="sticky-outer">
             <div class="sticky">
               <svg width="0" height="0">
@@ -76,7 +96,7 @@
                   </clipPath>
                 </defs>
               </svg>
-              <div id="sticky-content" class="sticky-content">
+              <div id="simon-sticky-content" class="sticky-content">
               </div>
             </div>
           </div>

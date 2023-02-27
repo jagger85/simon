@@ -2,30 +2,21 @@
   font-family: holye;
   src: url('../assets/fonts/Hoyle.ttf');
 }
-
 @font-face{
   font-family: digital;
   src: url('../assets/fonts/Digital-7.ttf')
 }
-
 @font-face {
   font-family: hand2;
   src: url('../assets/fonts/Bonita.ttf');
 }
-
-@font-face {
-  font-family: hand3;
-  src: url('../assets/fonts/Hand2.ttf');
-}
-
 *{
-    box-sizing: border-box;
-    margin: 0px;
+  box-sizing: border-box;
+  margin: 0px;
 }
 .site-wrapper{
   overflow: hidden;
 }
-
 main{
   width: 200vw;
   height: 100vh;
@@ -33,58 +24,29 @@ main{
   background-size: 50vh;
   display: flex;
   overflow: hidden;
-
 }
 #menu-container{
   display: flex;
   width: 100vw;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
-
 }
-
-.text-red{
-  color:red;
-}
-
-.text-blue{
-  color:blue;
-}
-
-.text-green{
-  color:green
-}
-
-.text-yellow{
-  color:yellow
-}
-
-.button-container{
+/* .social-container{
   display: flex;
-  flex-direction: column;
-  padding: 10px;
+  align-items: center;
 }
-
-.menu-button{
-  padding: 10px;
-  font-family: hand3;
-  background-color: transparent;
-  border:none;
-  font-size: 7vh;
-}
-
 .social-logo{
-  width: 10vh;
-}
-
+  width: 4vh;
+  mix-blend-mode: darken;
+  
+} */
 .game-container{
   display: flex;
   flex-direction: column;
   width: 100vw;
   left: 100vw;
   align-content: center;
-
 }
 .simon-container{
     background-image: url('../assets/images/plastic.png');
@@ -103,7 +65,6 @@ main{
   margin-left: auto;
   margin-right:auto;
 }
-
 .metal {
     color: hsla(0,0%,20%,1);
     text-shadow: hsla(0,0%,40%,.5) 0 -1px 0, hsla(0,0%,100%,.6) 0 2px 1px;
@@ -116,7 +77,7 @@ main{
       hsla(0,0%, 0%,.15) 0 -5px 6px 4px; /* outer SD */
     transition: color .2s;
   }
-  .radial.metal {
+.radial.metal {
     background-image: -webkit-radial-gradient(  50%   0%,  8% 50%, hsla(0,0%,100%,.5) 0%, hsla(0,0%,100%,0) 100%),
       -webkit-radial-gradient(  50% 100%, 12% 50%, hsla(0,0%,100%,.6) 0%, hsla(0,0%,100%,0) 100%),
       -webkit-radial-gradient(   0%  50%, 50%  7%, hsla(0,0%,100%,.5) 0%, hsla(0,0%,100%,0) 100%),
@@ -181,7 +142,6 @@ main{
   align-items: center;
   justify-content: center;
 }
-
 .bi-power{
   color:darkred;
   font-size: 1vh;
@@ -198,12 +158,9 @@ main{
 .control-button{
   border: 2px solid rgb(70, 70, 70)
 }
-
-
 .red-glow{
   color:red;
 }
-
 .box{
     width: 40%;
     height: 40%;
@@ -214,31 +171,26 @@ main{
     transition: color .2s;
     position:absolute;
 }
-
 #box1{
     border-radius: 75% 10% 0% 10%;
     top:10%;
     right: 50%;
 }
-
 #box2{
     border-radius: 10% 0% 10% 75%;
     bottom: 10%;
     right: 50%;
 }
-
 #box3{
     border-radius: 10% 75% 10% 0%;
     left: 50%;
     top: 10%;
 }
-
 #box4{
     border-radius: 0% 10% 75% 10%;
     bottom: 10%;
     left: 50%;
 }
-
 .pressed{
   border:10px solid black;
 }
@@ -246,34 +198,27 @@ main{
 .yellow {
   background-color: yellow;
 }
-
 .red{
   background-color: red;
 }
-
 .green{
   background-color: green;
 }
-
 .blue{
   background-color: blue;
 }
-
 .yellow.active {
   filter: drop-shadow(31px 14px 70px yellow);
   background-color: rgb(255, 250, 99);
 }
-
 .active.red{
   background-color: rgb(255, 50, 50);
   filter: drop-shadow(31px 14px 70px red);
 }
-
 .active.blue{
   background-color: rgb(68, 68, 253);
   filter: drop-shadow(31px 14px 70px blue);
 }
-
 .active.green{
   background-color: rgb(0, 180, 0);
   filter: drop-shadow(31px 14px 70px #3aed087b);
