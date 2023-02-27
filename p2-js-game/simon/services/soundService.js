@@ -1,6 +1,5 @@
 import {events as e} from '../scripts/events.js';
 const context = new AudioContext();
-let enable = false;
 
 export function play(box,duration){
     const o = context.createOscillator();
@@ -27,34 +26,15 @@ export function play(box,duration){
             o.frequency.value = 440;
             break;
     }
-    if(enable)o.start();
-}
-
-function switchSound(){
-    if(localStorage.getItem('state')!= 'OFF'){
-    enable = !enable
-    enable ? document.getElementById('sound-icon').classList.add('sound-active')
-    : document.getElementById('sound-icon').classList.remove('sound-active')
+    if(localStorage.getItem('sound')=='on'){
+        o.start();
     }
-}
 
-export function setSound(boolean){
-    enable = boolean;
-    enable ? document.getElementById('sound-icon').classList.add('sound-active')
-    : document.getElementById('sound-icon').classList.remove('sound-active')
 }
 
 export const fn = (data) =>{
 
     switch (data){
-        case (data = e.SOUND_PRESSED):
-        switchSound();
-        break;
-
-        case (data = e.OFF):
-        enable = false;
-        break;
-
         case (data = e.RED_PRESSED):
             play('box1',1);
         break;

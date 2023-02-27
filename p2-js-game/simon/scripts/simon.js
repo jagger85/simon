@@ -4,6 +4,8 @@
  * {@link https://en.wikipedia.org/wiki/Finite-state_machine}
  * Basically it can change from one state to a finite number of states
  * defined by the functions avaible on each state.
+ * It has also some subscribers to whom simon is sending any important event
+ * that happens
  */
 
 import { fn as notes } from '../models/notes.js';
@@ -11,7 +13,7 @@ import {dataCenter as data, fn as datacenter} from '../services/dataCenter.js'
 import {events as e} from '../scripts/events.js'
 import {fn as display} from '../models/display.js'
 import {fn as keys} from '../models/keys.js'
-import {fn as controlButtons} from '../models/simonControlButtons.js'
+import {fn as controlButtons} from '../models/ControlButtons.js'
 import {fn as sound} from '../services/soundService.js'
 
 const observer = createObservable();

@@ -4,25 +4,27 @@
  * @param {date} lastClicked & @param {date} clickedAt used to detect a long press @see {@link lastClicked}
 */ 
 
-import { fn as sound} from '../services/soundService.js'
 import { fn as notes } from '../models/notes.js';
 import { events as e } from './events.js';
 import { fn as dataCenter} from '../services/dataCenter.js';
 import { fn as keys } from '../models/keys.js';
 import { fn as simon } from './simon.js';
 import { fn as menuButtons} from '../models/menuButtons.js'
+import { fn as sound } from '../services/soundService.js'
+import { fn as controlButtons } from '../models/ControlButtons.js'
 
 let lastClicked = 0;
 let clickedAt = 0;
 
 const observer = createObservable();
 
+observer.subscribe(dataCenter);
 observer.subscribe(keys);
 observer.subscribe(simon);
-observer.subscribe(dataCenter);
 observer.subscribe(notes);
+observer.subscribe(menuButtons);
 observer.subscribe(sound);
-observer.subscribe(menuButtons)
+observer.subscribe(controlButtons);
 
 observer.broadcast(e.LOAD_PAGE);
 
@@ -45,11 +47,13 @@ document.querySelector('#control-on').addEventListener('click',()=>{
 
 document.querySelector('#control-start').addEventListener('mouseup',()=>{
     lastClicked = new Date();
-    observer.broadcast(e.PLAY_PRESSED);
+    observer.broadcast(e.PLAY_RELEASED)
 })
 
 document.querySelector('#control-start').addEventListener('mousedown',()=>{
     clickedAt = new Date();
+    observer.broadcast(e.PLAY_PRESSED);
+
     setTimeout(()=>{
         if(clickedAt>lastClicked && localStorage.getItem('state') != 'OFF'){
             observer.broadcast(e.USER_RESET);

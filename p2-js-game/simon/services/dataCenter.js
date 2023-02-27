@@ -12,7 +12,6 @@ export const dataCenter = {
     userSteps:0,
     sequence : undefined,
     actualLevel: 0,
-    sound:false,
 
     get getSpeed(){
         return this.speed;
@@ -35,6 +34,7 @@ export const dataCenter = {
         this.userSteps = 0;
         this.sequence = undefined;
         this.actualLevel = 0;
+        this.sound = 'off';
         this.update();
     },
     reset: function(){
@@ -75,6 +75,7 @@ export const dataCenter = {
         localStorage.setItem('userSteps',this.userSteps);
         localStorage.setItem('sequence',this.sequence);
         localStorage.setItem('actualLevel',this.actualLevel);
+        localStorage.setItem('sound',this.sound)
     }
 }
 
@@ -101,5 +102,12 @@ export const fn = (data) =>{
                localStorage.setItem('record',dataCenter.getActualLevel);
             }
             dataCenter.init();
+            break;
+        case (data = e.SOUND_PRESSED):
+            if(localStorage.getItem('state') != 'OFF'){
+                localStorage.getItem('sound') == 'off'?
+                localStorage.setItem('sound','on') :
+                localStorage.setItem('sound','off');
+            }
     }
 } 

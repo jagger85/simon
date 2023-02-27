@@ -148,7 +148,9 @@ main{
 }
 .sound-active{
   color:greenyellow;
-
+}
+.orange-glow{
+  color: orange;
 }
 .sound-button-active{
   -webkit-box-shadow:0px 0px 36px 16px rgba(85,255,0,0.15);
