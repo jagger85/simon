@@ -47,13 +47,14 @@ document.querySelector('#control-on').addEventListener('click',()=>{
 
 document.querySelector('#control-start').addEventListener('mouseup',()=>{
     lastClicked = new Date();
-    observer.broadcast(e.PLAY_RELEASED)
+    observer.broadcast(e.PLAY_PRESSED);
+
+
 })
 
 document.querySelector('#control-start').addEventListener('mousedown',()=>{
     clickedAt = new Date();
-    observer.broadcast(e.PLAY_PRESSED);
-
+    observer.broadcast(e.PLAY_RELEASED)
     setTimeout(()=>{
         if(clickedAt>lastClicked && localStorage.getItem('state') != 'OFF'){
             observer.broadcast(e.USER_RESET);
