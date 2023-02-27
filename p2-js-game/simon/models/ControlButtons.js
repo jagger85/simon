@@ -17,7 +17,7 @@ export const fn = (data) =>{
             break;
 
         case (data = e.PLAY_RELEASED):
-            if(localStorage.getItem('state')!='off')
+            if(localStorage.getItem('state')!='OFF')
             startButton.children[0].classList.add('orange-glow');
             break;
 

@@ -75,7 +75,6 @@ export const dataCenter = {
         localStorage.setItem('userSteps',this.userSteps);
         localStorage.setItem('sequence',this.sequence);
         localStorage.setItem('actualLevel',this.actualLevel);
-        localStorage.setItem('sound',this.sound)
     }
 }
 
