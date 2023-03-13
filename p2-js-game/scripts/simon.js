@@ -135,7 +135,7 @@ let simon = {
     },
   },
   /**
-   * Dispatch is the method responsible for triggering actions, it will only trigger the action if it is in the right state
+   * Dispatch is the method responsible for triggering actions, it will only trigger the action if it is avaiable in the current state
    */
   dispatch(actionName, ...args) {
     const actions = this.transitions[this.state];
