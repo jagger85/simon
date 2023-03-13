@@ -1,8 +1,0 @@
-.moveLeft{
-    transform: translate(-100vw);
-    transition: transform 530ms ease-in-out;
-}
-.moveRight{
-    transform: translate(0vw);
-    transition: transform 530ms ease-in-out;
-}
