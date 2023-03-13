@@ -1,6 +1,7 @@
 /**
  * This script is responsible for showing the notes located under the game,
  * it reflects some messages on how to operate simon and the user record.
+ * Current note is stored in localStorage
  */
 
 import { events as e } from "../scripts/events.js";
@@ -10,7 +11,9 @@ const notes = {
   2: "For reset:<br>Press play button for <br> three seconds<br>Your current record is ",
   3: 'Made with &nbsp;<i class="bi bi-heart"></i> &nbsp;by Jagger85',
 };
-
+/**
+ * Inserts the current note to the html element, checks if the value is undefined to show the first note
+ */
 function printNote() {
   if (localStorage.getItem("note") == undefined)
     localStorage.setItem("note", 1);
@@ -18,7 +21,9 @@ function printNote() {
     localStorage.getItem("note")
   );
 }
-
+/**
+ * Iterates through the notes and checks if current note is out of bounds to get the first one instead
+ */
 function nextNote() {
   if (localStorage.getItem("note") > 2) {
     localStorage.setItem("note", 1);
@@ -32,7 +37,11 @@ function nextNote() {
     );
   }
 }
-
+/**
+ * Get the desired note
+ * @param {number} note - The note position @see notes 
+ * @returns {string} - The desired note
+ */
 function getNote(note) {
   switch (note) {
     case (note = "1"):
@@ -50,9 +59,10 @@ function getNote(note) {
       return undefined;
   }
 }
-
 /**
  * This function returns a sentence according to the user level to encourage the user to scoring higher.
+ * @param {number} level - The user Record
+ * @returns {string} - A string corresponding to the user level
  */
 function getSentece(level) {
   switch (true) {
@@ -66,7 +76,11 @@ function getSentece(level) {
       return "Give a try and challenge yourself";
   }
 }
-
+/**
+ * Responsible for switching between the game notes
+ * @module models/notes.js
+ * @param {string} event - A game event 
+ */
 export const fn = (data) => {
   switch (data) {
     case (data = e.NOTE_CLICKED):

@@ -1,10 +1,10 @@
-/**
- * This function is responsible of observing the events and change the text on simon display
- */
-
 import { display } from "./models.js";
 import { events as e } from "../scripts/events.js";
-
+/**
+ * Responsible of observing events to change simon display text.
+ * @module modules/display.js
+ * @param {string} event - A game event. 
+ */
 export const fn = (data) => {
   switch (data) {
     case (data = e.ON):
@@ -39,7 +39,11 @@ export const fn = (data) => {
       break;
   }
 };
-
+/**
+ * Inherits a string on the display
+ * @param {string} string - The string to be shown by the display
+ * It has a hard-coded timer of 2 seconds, after that time it will show a blank display 
+ */
 function showValue(string) {
   display.value = string;
   setTimeout(() => {

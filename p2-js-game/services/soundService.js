@@ -1,12 +1,18 @@
 /**
  * Sound service is responsible for triggering the sounds related with the game.
- * It observes the events which are relevant to sounds
+ * It observes the events which are relevant to sounds.
  */
 
 import { events as e } from "../scripts/events.js";
+
 const context = new AudioContext();
 
-export function play(box, duration) {
+/**
+ * Responsible for setting everithing that is needed to play a sound.
+ * @param {string} string - A string that represents which sound should sound.
+ * @param {number} duration - A number that represents how many seconds to sound .
+ */
+function play(string, duration) {
   const o = context.createOscillator();
   o.type = "triangle";
   var g = context.createGain();
@@ -17,7 +23,7 @@ export function play(box, duration) {
     context.currentTime + (duration ?? 1)
   );
 
-  switch (box) {
+  switch (string) {
     case "box1":
       o.frequency.value = 261.6;
       break;
@@ -38,7 +44,11 @@ export function play(box, duration) {
     o.start();
   }
 }
-
+/**
+ * Responsible for trigger sounds.
+ * @module services/soundService.js
+ * @param {string} event - A game event 
+ */
 export const fn = (data) => {
   switch (data) {
     case (data = e.RED_PRESSED):

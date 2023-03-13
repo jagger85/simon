@@ -1,7 +1,6 @@
 /**
  * This script is responsible for setting up a single point for getting all the important objects in the app
  */
-
 export const box1 = document.getElementById("box1");
 export const box2 = document.getElementById("box2");
 export const box3 = document.getElementById("box3");

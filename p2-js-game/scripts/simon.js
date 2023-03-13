@@ -3,16 +3,12 @@
  * it implements a finite state machine approach
  * {@link https://en.wikipedia.org/wiki/Finite-state_machine}
  * Basically it can change from one state to a finite number of states
- * defined by the functions avaible on each state.
- * It has also some subscribers to whom simon is sending any important event
- * that happens
+ * defined by the functions avaible on each transition.
+ * It has also some subscribers to whom simon is sending any important event that happens
  */
 
 import { fn as notes } from "../models/notes.js";
-import {
-  dataCenter as data,
-  fn as datacenter,
-} from "../services/dataCenter.js";
+import { dataCenter as data, fn as datacenter } from "../services/dataCenter.js";
 import { events as e } from "./events.js";
 import { fn as display } from "../models/display.js";
 import { fn as keys } from "../models/keys.js";
@@ -28,8 +24,7 @@ observer.subscribe(keys);
 observer.subscribe(sound);
 
 /**
- * Here in simon object states are represented by the objects inside transitions in which
- * you can find the avaible methods to execute.
+ * Simon states are represented by transitions properties where you can find the avaible methods to execute.
  * There is five avaible states which are OFF, STANDBY, DISPLAYING, READING & RESETING
  * @see simon.transitions.OFF Simon don´t react to user input unless the user press the "on" button.
  * @see simon.transitions.STANDBY Is waiting for a user input.
@@ -77,7 +72,6 @@ let simon = {
             setTimeout(() => {
               releaseKey(data.getSequence[n]);
               n++;
-
               setTimeout(() => {
                 data.getSequence[n] != undefined
                   ? step()
@@ -135,7 +129,10 @@ let simon = {
     },
   },
   /**
-   * Dispatch is the method responsible for triggering actions, it will only trigger the action if it is avaiable in the current state
+   * Responsible for triggering actions, it will only trigger the action if it is avaiable in the current state,
+   * otherwise it will write a message on console.
+   * @param {string} actionName - The action simon has to trigger
+   * @param {Array} args - The arguments passed to the action, arguments should be passed as an Array
    */
   dispatch(actionName, ...args) {
     const actions = this.transitions[this.state];
@@ -151,6 +148,7 @@ let simon = {
   },
   /**
    * Change state is the method responsible for changing the machine state
+   * @param {string} newState - The state that simon will be changed to
    */
   changeState(newState) {
     localStorage.setItem("state", newState);

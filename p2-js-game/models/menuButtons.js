@@ -1,8 +1,8 @@
-/**
- * This function is responsible for the menu buttons behavior
- */
 import { events as e } from "../scripts/events.js";
-
+/**
+ * Responsible of the behavior for menu buttons
+ * @module menuButtons.js
+ */
 export const fn = (data) => {
   switch (data) {
     case (data = e.MENU_START_PRESSED):

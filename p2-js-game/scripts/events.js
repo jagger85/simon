@@ -1,8 +1,9 @@
 /**
  * Events is an object with a collection of keys wich represent
- * any event of interest for another component
+ * any event of interest for another component that occurs in the game.
+ * @constant
+ * @type {JSON}
  */
-
 export const events = Object.freeze({
   ON: "SimonOn",
   OFF: "machineOFF",

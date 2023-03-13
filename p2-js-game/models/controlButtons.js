@@ -1,6 +1,11 @@
 import { events as e } from "../scripts/events.js";
 import { onButton, soundButton, startButton } from "./models.js";
 
+/**
+ * Resposible for changing simon buttons styles.
+ * @module models/controlButtons
+ * @param {string} events - A game event 
+ */
 export const fn = (data) => {
   switch (data) {
     case (data = e.ON):

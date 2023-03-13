@@ -1,9 +1,7 @@
 /**
  * The handler is responsible for detecting user inputs and warn its subscribers,
  * also triggers the LOADPAGE event for initializing if needed
- * @param {date} lastClicked & @param {date} clickedAt used to detect a long press @see {@link lastClicked}
  */
-
 import { fn as notes } from "../models/notes.js";
 import { events as e } from "./events.js";
 import { fn as dataCenter } from "../services/dataCenter.js";
@@ -34,6 +32,7 @@ observer.broadcast(e.LOAD_PAGE);
 document.querySelector("#go-to-game").addEventListener("click", () => {
   observer.broadcast(e.MENU_START_PRESSED);
 });
+
 document.querySelector("#back-to-menu").addEventListener("click", () => {
   observer.broadcast(e.BACK_TO_MENU);
 });
@@ -50,6 +49,9 @@ document.querySelector("#control-start").addEventListener("mouseup", () => {
   observer.broadcast(e.PLAY_PRESSED);
 });
 
+/**
+ * @param {date} lastClicked & @param {date} clickedAt used to detect a long press
+*/
 document.querySelector("#control-start").addEventListener("mousedown", () => {
   clickedAt = new Date();
   observer.broadcast(e.PLAY_RELEASED);
@@ -59,6 +61,7 @@ document.querySelector("#control-start").addEventListener("mousedown", () => {
     }
   }, 3000);
 });
+
 document.querySelector("#sound-button").addEventListener("click", () => {
   observer.broadcast(e.SOUND_PRESSED);
 });
@@ -70,9 +73,11 @@ document.querySelector("#box1").addEventListener("mousedown", () => {
 document.querySelector("#box2").addEventListener("mousedown", () => {
   observer.broadcast(e.RED_PRESSED);
 });
+
 document.querySelector("#box3").addEventListener("mousedown", () => {
   observer.broadcast(e.BLUE_PRESSED);
 });
+
 document.querySelector("#box4").addEventListener("mousedown", () => {
   observer.broadcast(e.GREEN_PRESSED);
 });
@@ -93,11 +98,9 @@ document.querySelector("#box4").addEventListener("mouseup", () => {
   observer.broadcast(e.GREEN_RELEASED);
 });
 
-document
-  .getElementById("simon-note-container")
-  .addEventListener("click", () => {
+document.getElementById("simon-note-container").addEventListener("click", () => {
     observer.broadcast(e.NOTE_CLICKED);
-  });
+});
 
 function createObservable() {
   return {
