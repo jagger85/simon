@@ -196,6 +196,11 @@ function releaseKey(key) {
   }
 }
 
+/**
+ * Responsible for observing user inputs
+ * @module scripts/simon.js
+ * @param {string} event - A game event. 
+ */
 export const fn = (data) => {
   switch (data) {
     case e.YELLOW_PRESSED:

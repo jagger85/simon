@@ -7,7 +7,7 @@ import { box1 as yellow, box2 as red, box3 as blue, box4 as green } from "../mod
 import { events as e } from "../scripts/events.js";
 
 /**
- * Responsible for recieven events to change Simon keys styles.
+ * Responsible for recieving events to change Simon keys styles.
  * @module models/keys.js
  * @param {string} event - A game event. 
  */

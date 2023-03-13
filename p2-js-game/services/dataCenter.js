@@ -5,7 +5,11 @@
  */
 
 import { events as e } from "../scripts/events.js";
-
+/**
+ * Provides methods for writing & reading data from the game
+ * @constant
+ * @type {Object}
+ */
 export const dataCenter = {
   speed: 1.2,
   steps: 4,
@@ -80,6 +84,11 @@ export const dataCenter = {
   },
 };
 
+/**
+ * Responsible for dealing with the data related to the game.
+ * @module services/dataCenter.js
+ * @param {string} event - A game event 
+ */
 export const fn = (data) => {
   switch (data) {
     case (data = e.ON):
