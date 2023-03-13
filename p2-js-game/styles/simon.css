@@ -1,31 +1,31 @@
 @font-face {
   font-family: holye;
-  src: url('../assets/fonts/Hoyle.ttf');
+  src: url("../assets/fonts/Hoyle.ttf");
 }
-@font-face{
+@font-face {
   font-family: digital;
-  src: url('../assets/fonts/Digital-7.ttf')
+  src: url("../assets/fonts/Digital-7.ttf");
 }
 @font-face {
   font-family: hand2;
-  src: url('../assets/fonts/Bonita.ttf');
+  src: url("../assets/fonts/Bonita.ttf");
 }
-*{
+* {
   box-sizing: border-box;
   margin: 0px;
 }
-.site-wrapper{
+.site-wrapper {
   overflow: hidden;
 }
-main{
+main {
   width: 200vw;
   height: 100vh;
-  background-image: url('../assets/images/wood.jpg');
+  background-image: url("../assets/images/wood.jpg");
   background-size: 50vh;
   display: flex;
   overflow: hidden;
 }
-#menu-container{
+#menu-container {
   display: flex;
   width: 100vw;
   justify-content: space-evenly;
@@ -41,211 +41,273 @@ main{
   mix-blend-mode: darken;
   
 } */
-.game-container{
+.game-container {
   display: flex;
   flex-direction: column;
   width: 100vw;
   left: 100vw;
   align-content: center;
 }
-.simon-container{
-    background-image: url('../assets/images/plastic.png');
-    max-width: 650px;
-    max-height: 650px;
-    width: 90vw;
-    height: 90vw;
-    border-radius: 50%;
-    position: relative;
-    background-color: hsl(0,0%,90%);
-    box-shadow: inset hsla(0,0%,15%,  1) 0  0px 0px 4px, /* border */
-      inset hsla(0,0%,15%, .8) 0 -1px 5px 4px, /* soft SD */
-      inset hsla(0,0%,0%, .25) 0 -1px 0px 7px, /* bottom SD */
-      hsla(0,0%, 0%,.15) 0 -5px 6px 4px; /* outer SD */
-    transition: color .2s;
+.simon-container {
+  background-image: url("../assets/images/plastic.png");
+  max-width: 650px;
+  max-height: 650px;
+  width: 90vw;
+  height: 90vw;
+  border-radius: 50%;
+  position: relative;
+  background-color: hsl(0, 0%, 90%);
+  box-shadow: inset hsla(0, 0%, 15%, 1) 0 0px 0px 4px,
+    /* border */ inset hsla(0, 0%, 15%, 0.8) 0 -1px 5px 4px,
+    /* soft SD */ inset hsla(0, 0%, 0%, 0.25) 0 -1px 0px 7px,
+    /* bottom SD */ hsla(0, 0%, 0%, 0.15) 0 -5px 6px 4px; /* outer SD */
+  transition: color 0.2s;
   margin-left: auto;
-  margin-right:auto;
+  margin-right: auto;
 }
 .metal {
-    color: hsla(0,0%,20%,1);
-    text-shadow: hsla(0,0%,40%,.5) 0 -1px 0, hsla(0,0%,100%,.6) 0 2px 1px;
-    
-    background-color: hsl(0,0%,90%);
-    box-shadow: inset hsla(0,0%,15%,  1) 0  0px 0px 4px, /* border */
-      inset hsla(0,0%,15%, .8) 0 -1px 5px 4px, /* soft SD */
-      inset hsla(0,0%,0%, .25) 0 -1px 0px 7px, /* bottom SD */
-      inset hsla(0,0%,100%,.7) 0  2px 1px 7px, /* top HL */
-      hsla(0,0%, 0%,.15) 0 -5px 6px 4px; /* outer SD */
-    transition: color .2s;
-  }
-.radial.metal {
-    background-image: -webkit-radial-gradient(  50%   0%,  8% 50%, hsla(0,0%,100%,.5) 0%, hsla(0,0%,100%,0) 100%),
-      -webkit-radial-gradient(  50% 100%, 12% 50%, hsla(0,0%,100%,.6) 0%, hsla(0,0%,100%,0) 100%),
-      -webkit-radial-gradient(   0%  50%, 50%  7%, hsla(0,0%,100%,.5) 0%, hsla(0,0%,100%,0) 100%),
-      -webkit-radial-gradient( 100%  50%, 50%  5%, hsla(0,0%,100%,.5) 0%, hsla(0,0%,100%,0) 100%),
-      -webkit-repeating-radial-gradient( 50% 50%, 100% 100%, hsla(0,0%,  0%,0) 0%, hsla(0,0%,  0%,0)   3%, hsla(0,0%,  0%,.1) 3.5%),
-      -webkit-repeating-radial-gradient( 50% 50%, 100% 100%, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0)   6%, hsla(0,0%,100%,.1) 7.5%),
-      -webkit-repeating-radial-gradient( 50% 50%, 100% 100%, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 1.2%, hsla(0,0%,100%,.2) 2.2%),
-      -webkit-radial-gradient( 50% 50%, 200% 50%, hsla(0,0%,90%,1) 5%, hsla(0,0%,85%,1) 30%, hsla(0,0%,60%,1) 100%);
-  }
- 
-  .metal.radial:before, .metal.radial:after {
-    /* fake conical gradients */
-    background-image: -webkit-radial-gradient(  50%   0%, 10% 50%, hsla(0,0%,0%,.1) 0%, hsla(0,0%,0%,0) 100%),
-      -webkit-radial-gradient(  50% 100%, 10% 50%, hsla(0,0%,0%,.1) 0%, hsla(0,0%,0%,0) 100%),
-      -webkit-radial-gradient(   0%  50%, 50% 10%, hsla(0,0%,0%,.1) 0%, hsla(0,0%,0%,0) 100%),
-      -webkit-radial-gradient( 100%  50%, 50% 06%, hsla(0,0%,0%,.1) 0%, hsla(0,0%,0%,0) 100%);
-  }
-  .metal.radial:before { transform: rotate( 65deg); }
-  .metal.radial:after { transform: rotate(-65deg); }
+  color: hsla(0, 0%, 20%, 1);
+  text-shadow: hsla(0, 0%, 40%, 0.5) 0 -1px 0, hsla(0, 0%, 100%, 0.6) 0 2px 1px;
 
-.simon-control-container{
-    width: 50%;
-    height: 50%;
-    border-radius: 50%;
-    position:absolute;
-    z-index: 1;
-    border: 5px solid black;
-    left: 25%;
-    top: 25%;
+  background-color: hsl(0, 0%, 90%);
+  box-shadow: inset hsla(0, 0%, 15%, 1) 0 0px 0px 4px,
+    /* border */ inset hsla(0, 0%, 15%, 0.8) 0 -1px 5px 4px,
+    /* soft SD */ inset hsla(0, 0%, 0%, 0.25) 0 -1px 0px 7px,
+    /* bottom SD */ inset hsla(0, 0%, 100%, 0.7) 0 2px 1px 7px,
+    /* top HL */ hsla(0, 0%, 0%, 0.15) 0 -5px 6px 4px; /* outer SD */
+  transition: color 0.2s;
+}
+.radial.metal {
+  background-image: -webkit-radial-gradient(
+      50% 0%,
+      8% 50%,
+      hsla(0, 0%, 100%, 0.5) 0%,
+      hsla(0, 0%, 100%, 0) 100%
+    ),
+    -webkit-radial-gradient(50% 100%, 12% 50%, hsla(0, 0%, 100%, 0.6) 0%, hsla(
+            0,
+            0%,
+            100%,
+            0
+          )
+          100%),
+    -webkit-radial-gradient(0% 50%, 50% 7%, hsla(0, 0%, 100%, 0.5) 0%, hsla(
+            0,
+            0%,
+            100%,
+            0
+          )
+          100%),
+    -webkit-radial-gradient(100% 50%, 50% 5%, hsla(0, 0%, 100%, 0.5) 0%, hsla(
+            0,
+            0%,
+            100%,
+            0
+          )
+          100%),
+    -webkit-repeating-radial-gradient(50% 50%, 100% 100%, hsla(0, 0%, 0%, 0) 0%, hsla(
+            0,
+            0%,
+            0%,
+            0
+          )
+          3%, hsla(0, 0%, 0%, 0.1) 3.5%),
+    -webkit-repeating-radial-gradient(50% 50%, 100% 100%, hsla(0, 0%, 100%, 0)
+          0%, hsla(0, 0%, 100%, 0) 6%, hsla(0, 0%, 100%, 0.1) 7.5%),
+    -webkit-repeating-radial-gradient(50% 50%, 100% 100%, hsla(0, 0%, 100%, 0)
+          0%, hsla(0, 0%, 100%, 0) 1.2%, hsla(0, 0%, 100%, 0.2) 2.2%),
+    -webkit-radial-gradient(50% 50%, 200% 50%, hsla(0, 0%, 90%, 1) 5%, hsla(
+            0,
+            0%,
+            85%,
+            1
+          )
+          30%, hsla(0, 0%, 60%, 1) 100%);
 }
 
-.game-name{
+.metal.radial:before,
+.metal.radial:after {
+  /* fake conical gradients */
+  background-image: -webkit-radial-gradient(
+      50% 0%,
+      10% 50%,
+      hsla(0, 0%, 0%, 0.1) 0%,
+      hsla(0, 0%, 0%, 0) 100%
+    ),
+    -webkit-radial-gradient(50% 100%, 10% 50%, hsla(0, 0%, 0%, 0.1) 0%, hsla(
+            0,
+            0%,
+            0%,
+            0
+          )
+          100%),
+    -webkit-radial-gradient(0% 50%, 50% 10%, hsla(0, 0%, 0%, 0.1) 0%, hsla(
+            0,
+            0%,
+            0%,
+            0
+          )
+          100%),
+    -webkit-radial-gradient(100% 50%, 50% 06%, hsla(0, 0%, 0%, 0.1) 0%, hsla(
+            0,
+            0%,
+            0%,
+            0
+          )
+          100%);
+}
+.metal.radial:before {
+  transform: rotate(65deg);
+}
+.metal.radial:after {
+  transform: rotate(-65deg);
+}
+
+.simon-control-container {
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 1;
+  border: 5px solid black;
+  left: 25%;
+  top: 25%;
+}
+
+.game-name {
   font-size: 4vh;
   text-align: center;
   font-family: holye;
   user-select: none;
-
 }
 
-#display{
+#display {
   background-color: black;
-  color:red;
+  color: red;
   font-size: 2vh;
   font-family: digital;
   user-select: none;
-  box-shadow: inset rgb(66, 66, 66) 0  0px 0px 4px, /* border */
-  inset hsla(0,0%,15%, .8) 0 -1px 5px 4px, /* soft SD */
-  inset hsla(0,0%,0%, .25) 0 -1px 0px 7px, /* bottom SD */
-  hsla(0,0%, 0%,.15) 0 -5px 6px 4px; /* outer SD */
-  transition: color .2s;
+  box-shadow: inset rgb(66, 66, 66) 0 0px 0px 4px,
+    /* border */ inset hsla(0, 0%, 15%, 0.8) 0 -1px 5px 4px,
+    /* soft SD */ inset hsla(0, 0%, 0%, 0.25) 0 -1px 0px 7px,
+    /* bottom SD */ hsla(0, 0%, 0%, 0.15) 0 -5px 6px 4px; /* outer SD */
+  transition: color 0.2s;
   border-radius: 5px;
   padding: 0.5rem;
   width: 80%;
   height: 50%;
 }
-.control-button{
+.control-button {
   border-radius: 50%;
-  width: 2.5vh ;
-  height: 2.5vh ;
-  background-color:grey;
+  width: 2.5vh;
+  height: 2.5vh;
+  background-color: grey;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.bi-power{
-  color:darkred;
+.bi-power {
+  color: darkred;
   font-size: 1vh;
 }
-.sound-active{
-  color:greenyellow;
+.sound-active {
+  color: greenyellow;
 }
-.orange-glow{
+.orange-glow {
   color: orange;
 }
-.sound-button-active{
-  -webkit-box-shadow:0px 0px 36px 16px rgba(85,255,0,0.15);
-  -moz-box-shadow: 0px 0px 36px 16px rgba(85,255,0,0.15);
-  box-shadow: 0px 0px 36px 16px rgba(85,255,0,0.15);
+.sound-button-active {
+  -webkit-box-shadow: 0px 0px 36px 16px rgba(85, 255, 0, 0.15);
+  -moz-box-shadow: 0px 0px 36px 16px rgba(85, 255, 0, 0.15);
+  box-shadow: 0px 0px 36px 16px rgba(85, 255, 0, 0.15);
 }
-.control-button{
-  border: 2px solid rgb(70, 70, 70)
+.control-button {
+  border: 2px solid rgb(70, 70, 70);
 }
-.red-glow{
-  color:red;
+.red-glow {
+  color: red;
 }
-.box{
-    width: 40%;
-    height: 40%;
-    box-shadow: inset hsla(0,0%,15%,  1) 0  0px 0px 4px, /* border */
-    inset hsla(0,0%,15%, .8) 0 -1px 5px 4px, /* soft SD */
-    inset hsla(0,0%,0%, .25) 0 -1px 0px 7px, /* bottom SD */
-    hsla(0,0%, 0%,.15) 0 -5px 6px 4px; /* outer SD */
-    transition: color .2s;
-    position:absolute;
+.box {
+  width: 40%;
+  height: 40%;
+  box-shadow: inset hsla(0, 0%, 15%, 1) 0 0px 0px 4px,
+    /* border */ inset hsla(0, 0%, 15%, 0.8) 0 -1px 5px 4px,
+    /* soft SD */ inset hsla(0, 0%, 0%, 0.25) 0 -1px 0px 7px,
+    /* bottom SD */ hsla(0, 0%, 0%, 0.15) 0 -5px 6px 4px; /* outer SD */
+  transition: color 0.2s;
+  position: absolute;
 }
-#box1{
-    border-radius: 75% 10% 0% 10%;
-    top:10%;
-    right: 50%;
+#box1 {
+  border-radius: 75% 10% 0% 10%;
+  top: 10%;
+  right: 50%;
 }
-#box2{
-    border-radius: 10% 0% 10% 75%;
-    bottom: 10%;
-    right: 50%;
+#box2 {
+  border-radius: 10% 0% 10% 75%;
+  bottom: 10%;
+  right: 50%;
 }
-#box3{
-    border-radius: 10% 75% 10% 0%;
-    left: 50%;
-    top: 10%;
+#box3 {
+  border-radius: 10% 75% 10% 0%;
+  left: 50%;
+  top: 10%;
 }
-#box4{
-    border-radius: 0% 10% 75% 10%;
-    bottom: 10%;
-    left: 50%;
+#box4 {
+  border-radius: 0% 10% 75% 10%;
+  bottom: 10%;
+  left: 50%;
 }
-.pressed{
-  border:10px solid black;
+.pressed {
+  border: 10px solid black;
 }
 
 .yellow {
   background-color: yellow;
 }
-.red{
+.red {
   background-color: red;
 }
-.green{
+.green {
   background-color: green;
 }
-.blue{
+.blue {
   background-color: blue;
 }
 .yellow.active {
   filter: drop-shadow(31px 14px 70px yellow);
   background-color: rgb(255, 250, 99);
 }
-.active.red{
+.active.red {
   background-color: rgb(255, 50, 50);
   filter: drop-shadow(31px 14px 70px red);
 }
-.active.blue{
+.active.blue {
   background-color: rgb(68, 68, 253);
   filter: drop-shadow(31px 14px 70px blue);
 }
-.active.green{
+.active.green {
   background-color: rgb(0, 180, 0);
   filter: drop-shadow(31px 14px 70px #3aed087b);
 }
-.title{
+.title {
   height: 40%;
   display: flex;
   justify-content: center;
   align-content: center;
   flex-wrap: wrap;
 }
-.display{
+.display {
   height: 30%;
   justify-content: center;
   display: flex;
 }
-.buttons{
+.buttons {
   display: flex;
   justify-content: space-evenly;
   height: 30%;
 }
-#back-to-menu{
+#back-to-menu {
   width: 20vh;
   height: 20vh;
   margin-left: auto;
 }
-
-
