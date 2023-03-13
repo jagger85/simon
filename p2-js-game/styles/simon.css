@@ -1,25 +1,59 @@
 @font-face {
   font-family: holye;
-  src: url('../assets/Hoyle.ttf');
+  src: url('../assets/fonts/Hoyle.ttf');
 }
 @font-face{
   font-family: digital;
-  src: url('../assets/Digital-7.ttf')
+  src: url('../assets/fonts/Digital-7.ttf')
+}
+@font-face {
+  font-family: hand2;
+  src: url('../assets/fonts/Bonita.ttf');
 }
 *{
-    box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0px;
 }
-
-body {
-    background-image: url('../assets/wood.jpg');
-    background-size: 30%;
-    
+.site-wrapper{
+  overflow: hidden;
 }
-
+main{
+  width: 200vw;
+  height: 100vh;
+  background-image: url('../assets/images/wood.jpg');
+  background-size: 50vh;
+  display: flex;
+  overflow: hidden;
+}
+#menu-container{
+  display: flex;
+  width: 100vw;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+}
+/* .social-container{
+  display: flex;
+  align-items: center;
+}
+.social-logo{
+  width: 4vh;
+  mix-blend-mode: darken;
+  
+} */
+.game-container{
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  left: 100vw;
+  align-content: center;
+}
 .simon-container{
-    background-image: url('../assets/plastic.png');
-    width: 45rem ;
-    height: 45rem;
+    background-image: url('../assets/images/plastic.png');
+    max-width: 650px;
+    max-height: 650px;
+    width: 90vw;
+    height: 90vw;
     border-radius: 50%;
     position: relative;
     background-color: hsl(0,0%,90%);
@@ -28,10 +62,9 @@ body {
       inset hsla(0,0%,0%, .25) 0 -1px 0px 7px, /* bottom SD */
       hsla(0,0%, 0%,.15) 0 -5px 6px 4px; /* outer SD */
     transition: color .2s;
-    margin-left: auto;
-    margin-right: auto;
+  margin-left: auto;
+  margin-right:auto;
 }
-
 .metal {
     color: hsla(0,0%,20%,1);
     text-shadow: hsla(0,0%,40%,.5) 0 -1px 0, hsla(0,0%,100%,.6) 0 2px 1px;
@@ -44,7 +77,7 @@ body {
       hsla(0,0%, 0%,.15) 0 -5px 6px 4px; /* outer SD */
     transition: color .2s;
   }
-  .radial.metal {
+.radial.metal {
     background-image: -webkit-radial-gradient(  50%   0%,  8% 50%, hsla(0,0%,100%,.5) 0%, hsla(0,0%,100%,0) 100%),
       -webkit-radial-gradient(  50% 100%, 12% 50%, hsla(0,0%,100%,.6) 0%, hsla(0,0%,100%,0) 100%),
       -webkit-radial-gradient(   0%  50%, 50%  7%, hsla(0,0%,100%,.5) 0%, hsla(0,0%,100%,0) 100%),
@@ -74,24 +107,22 @@ body {
     border: 5px solid black;
     left: 25%;
     top: 25%;
-    
 }
 
 .game-name{
-  font-size: 3rem;
+  font-size: 4vh;
   text-align: center;
   font-family: holye;
   user-select: none;
-  height: 8rem;
+
 }
 
 #display{
   background-color: black;
   color:red;
-  font-size: 2rem;
+  font-size: 2vh;
   font-family: digital;
   user-select: none;
-  width: 15rem;
   box-shadow: inset rgb(66, 66, 66) 0  0px 0px 4px, /* border */
   inset hsla(0,0%,15%, .8) 0 -1px 5px 4px, /* soft SD */
   inset hsla(0,0%,0%, .25) 0 -1px 0px 7px, /* bottom SD */
@@ -99,32 +130,39 @@ body {
   transition: color .2s;
   border-radius: 5px;
   padding: 0.5rem;
+  width: 80%;
+  height: 50%;
 }
-button{
+.control-button{
   border-radius: 50%;
-  width: 2rem ;
-  height: 2rem;
-}
-#start{
+  width: 2.5vh ;
+  height: 2.5vh ;
   background-color:grey;
-}
-#sound{
-  background-color: grey;
-}
-#on{
-  background-color: grey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .bi-power{
   color:darkred;
-  font-size: large;
+  font-size: 1vh;
 }
-.green-glow{
-  color:greenyellow
+.sound-active{
+  color:greenyellow;
+}
+.orange-glow{
+  color: orange;
+}
+.sound-button-active{
+  -webkit-box-shadow:0px 0px 36px 16px rgba(85,255,0,0.15);
+  -moz-box-shadow: 0px 0px 36px 16px rgba(85,255,0,0.15);
+  box-shadow: 0px 0px 36px 16px rgba(85,255,0,0.15);
+}
+.control-button{
+  border: 2px solid rgb(70, 70, 70)
 }
 .red-glow{
   color:red;
 }
-
 .box{
     width: 40%;
     height: 40%;
@@ -135,31 +173,26 @@ button{
     transition: color .2s;
     position:absolute;
 }
-
 #box1{
     border-radius: 75% 10% 0% 10%;
     top:10%;
     right: 50%;
 }
-
 #box2{
     border-radius: 10% 0% 10% 75%;
     bottom: 10%;
     right: 50%;
 }
-
 #box3{
     border-radius: 10% 75% 10% 0%;
     left: 50%;
     top: 10%;
 }
-
 #box4{
     border-radius: 0% 10% 75% 10%;
     bottom: 10%;
     left: 50%;
 }
-
 .pressed{
   border:10px solid black;
 }
@@ -176,137 +209,43 @@ button{
 .blue{
   background-color: blue;
 }
-
 .yellow.active {
   filter: drop-shadow(31px 14px 70px yellow);
   background-color: rgb(255, 250, 99);
 }
-
 .active.red{
   background-color: rgb(255, 50, 50);
   filter: drop-shadow(31px 14px 70px red);
 }
-
 .active.blue{
   background-color: rgb(68, 68, 253);
   filter: drop-shadow(31px 14px 70px blue);
 }
-
 .active.green{
   background-color: rgb(0, 180, 0);
   filter: drop-shadow(31px 14px 70px #3aed087b);
 }
-
-.simon-control-container {  
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1.4fr 1.1fr 0.5fr;
-  gap: 0px 0px;
-  grid-auto-flow: row;
-  grid-template-areas:
-    "title"
-    "display"
-    "buttons";
+.title{
+  height: 40%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
 }
-
-.title {
-   grid-area: title; 
-  margin-top: 3rem;
-  height: 6rem;
-  }
-
-.display {
-  grid-area: display;
+.display{
+  height: 30%;
+  justify-content: center;
+  display: flex;
+}
+.buttons{
+  display: flex;
+  justify-content: space-evenly;
+  height: 30%;
+}
+#back-to-menu{
+  width: 20vh;
+  height: 20vh;
   margin-left: auto;
-  margin-right: auto;
-  
-  
 }
 
-.buttons {  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr;
-  gap: 0px 0px;
-  grid-auto-flow: row;
-  grid-template-areas:
-    "on start reset";
-  grid-area: buttons;
-  margin-bottom: 5rem;
-}
-
-.on {  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 0px 0px;
-  grid-auto-flow: row;
-  grid-template-areas:
-    "onText"
-    "onButton";
-  grid-area: on;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.onText {
-  grid-area: onText;
-  margin-left: auto;
-  margin-right: auto;
-
-}
-
-.onButton {
-  margin-left: auto;
-  margin-right: auto;
-  grid-area: onButton;
-}
-
-.start {  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 0px 0px;
-  grid-auto-flow: row;
-  grid-template-areas:
-    "startText"
-    "startButton";
-  grid-area: start;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.startText {
-  margin-left: auto;
-  margin-right: auto;
-  grid-area: startText;
-}
-
-.startButton {
-  margin-left: auto;
-  margin-right: auto;
-  grid-area: startButton;
-}
-
-.reset {  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 0px 0px;
-  grid-auto-flow: row;
-  grid-template-areas:
-    "resetText"
-    "resetButton";
-  grid-area: reset;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.resetText {
-  grid-area: resetText;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.resetButton {
-  grid-area: resetButton;
-  margin-left: auto;
-  margin-right: auto;
-}
 

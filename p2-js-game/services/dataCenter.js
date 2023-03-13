@@ -1,6 +1,12 @@
-import {events as e} from './events.js';
-export const dataCenter = {
+/**
+ * Data center is responsible for dealing with the data and the local storage,
+ * it provides the methods for initializing, reseting, and changing any data 
+ * in the game.
+ */
 
+import {events as e} from '../scripts/events.js';
+
+export const dataCenter = {
     speed : 1.2,
     steps : 4,
     userSteps:0,
@@ -28,6 +34,7 @@ export const dataCenter = {
         this.userSteps = 0;
         this.sequence = undefined;
         this.actualLevel = 0;
+        this.sound = 'off';
         this.update();
     },
     reset: function(){
@@ -76,23 +83,30 @@ export const fn = (data) =>{
         case (data = e.ON):
             dataCenter.init();
             break;
-        case (data = e.SEQUENCESTARTING):
+        case (data = e.SEQUENCE_STARTING):
             dataCenter.createNewSequence();
             break;
-        case (data = e.LEVELUP):
+        case (data = e.LEVEL_UP):
             dataCenter.levelUp();
             break;
         case (data = e.RESET):
             dataCenter.reset();
             break;
-        case (data = e.LOADPAGE):
+        case (data = e.LOAD_PAGE):
             dataCenter.init();
             localStorage.setItem('state','OFF');
             break;
-        case (data = e.WRONGINPUT):
+        case (data = e.WRONG_INPUT):
             if(dataCenter.getActualLevel>localStorage.getItem('record')){
                localStorage.setItem('record',dataCenter.getActualLevel);
             }
             dataCenter.init();
+            break;
+        case (data = e.SOUND_PRESSED):
+            if(localStorage.getItem('state') != 'OFF'){
+                localStorage.getItem('sound') == 'off'?
+                localStorage.setItem('sound','on') :
+                localStorage.setItem('sound','off');
+            }
     }
 } 

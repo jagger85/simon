@@ -1,4 +1,4 @@
-import { events as e } from "./events.js";
+import { events as e } from "../scripts/events.js";
 
 const notes = {
     1 : "How to play:<br>Train your memory and <br>remember the pattern <br>Don't forget to switch it on <br>Enjoy!",
@@ -8,18 +8,18 @@ const notes = {
 
 function printNote(){
     if(localStorage.getItem('note')== undefined) localStorage.setItem('note',1);
-    document.getElementById('sticky-content').innerHTML = getNote(localStorage.getItem('note'));
+    document.getElementById('simon-sticky-content').innerHTML = getNote(localStorage.getItem('note'));
 
 }
 
 function nextNote(){
     if(localStorage.getItem('note') > 2){
         localStorage.setItem('note',1);
-        document.getElementById('sticky-content').innerHTML = getNote(localStorage.getItem('note'));
+        document.getElementById('simon-sticky-content').innerHTML = getNote(localStorage.getItem('note'));
     }
     else{
         localStorage.setItem('note',parseInt(localStorage.getItem('note'))+1);
-        document.getElementById('sticky-content').innerHTML = getNote(localStorage.getItem('note'));
+        document.getElementById('simon-sticky-content').innerHTML = getNote(localStorage.getItem('note'));
     }
 }
 
@@ -52,16 +52,16 @@ function getSentece(level){
 export const fn = (data) =>{
     
     switch(data){
-        case (data = e.NOTECLICKED):
+        case (data = e.NOTE_CLICKED):
             nextNote();
             break;
         case (data = e.ON):
             printNote();
             break;
-        case (data = e.LOADPAGE):
+        case (data = e.LOAD_PAGE):
             printNote();
             break;
-        case (data = e.GAMEOVER):
+        case (data = e.GAME_OVER):
             printNote();
             break;
         default:

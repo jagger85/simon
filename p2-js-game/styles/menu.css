@@ -1,0 +1,37 @@
+@font-face {
+    font-family: hand3;
+    src: url('../assets/fonts/Hand2.ttf');
+  }
+.simon-title{
+    font-family: hand3;
+    background-color: transparent;
+    border:none;
+    font-size: 7rem;
+    left: 3rem;
+    user-select: none;
+    position: relative;
+}
+.text-red{
+    color:red;
+  }
+  
+  .text-blue{
+    color:blue;
+  }
+  
+  .text-green{
+    color:green
+  }
+  
+  .text-yellow{
+    color:rgb(255, 217, 0)
+  }
+
+#go-to-game{
+    width: 6rem;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    position: absolute;
+    top:80%;
+    left: 80%;
+}
