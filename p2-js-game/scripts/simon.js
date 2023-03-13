@@ -26,7 +26,7 @@ observer.subscribe(sound);
 /**
  * Simon states are represented by transitions properties where you can find the avaible methods to execute.
  * There is five avaible states which are OFF, STANDBY, DISPLAYING, READING & RESETING
- * @see simon.transitions.OFF Simon don´t react to user input unless the user press the "on" button.
+ * @see simon.transitions.OFF Simon doesn´t react to user input unless the user press the "on" button.
  * @see simon.transitions.STANDBY Is waiting for a user input.
  * @see simon.transitions.DISPLAYING Is responsible for displaying the pattern the user has to mimic.
  * @see simon.transitions.READING Is responsible for waiting the user input and check if it is correct.
