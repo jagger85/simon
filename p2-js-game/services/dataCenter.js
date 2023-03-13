@@ -104,9 +104,9 @@ export const fn = (data) =>{
             break;
         case (data = e.SOUND_PRESSED):
             if(localStorage.getItem('state') != 'OFF'){
-                localStorage.getItem('sound') == 'off'?
-                localStorage.setItem('sound','on') :
-                localStorage.setItem('sound','off');
+                localStorage.getItem('sound') == 'OFF'?
+                localStorage.setItem('sound','ON') :
+                localStorage.setItem('sound','OFF');
             }
     }
 } 

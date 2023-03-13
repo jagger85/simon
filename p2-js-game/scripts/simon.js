@@ -119,6 +119,9 @@ let simon ={
             }
         }
     },
+    /**
+     * Dispatch is the method responsible for triggering actions, it will only trigger the action if it is in the right state
+     */  
     dispatch(actionName,...args){
         const actions = this.transitions[this.state];
         const action = this.transitions[this.state][actionName];
@@ -129,6 +132,9 @@ let simon ={
             console.log(actionName + ' action not valid for current state ='+this.state);
         }
     },
+    /**
+     * Change state is the method responsible for changing the machine state
+     */
     changeState(newState){
         localStorage.setItem('state',newState);
         this.state = newState;

@@ -1,3 +1,7 @@
+/**
+ * This function is responsible of observing the events and change the text on simon display
+ */
+
 import { display } from "./models.js";
 import { events as e } from "../scripts/events.js";
 

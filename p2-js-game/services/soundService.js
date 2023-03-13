@@ -1,3 +1,8 @@
+/**
+ * Sound service is responsible for triggering the sounds related with the game.
+ * It observes the events which are relevant to sounds
+ */
+
 import {events as e} from '../scripts/events.js';
 const context = new AudioContext();
 

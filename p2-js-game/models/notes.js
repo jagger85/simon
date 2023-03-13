@@ -1,3 +1,8 @@
+/**
+ * This script is responsible for showing the notes located under the game,
+ * it reflects some messages on how to operate simon and the user record.
+ */
+
 import { events as e } from "../scripts/events.js";
 
 const notes = {

@@ -1,4 +1,6 @@
-import { soundButton } from './models.js';
+/**
+ * This function is responsible for the menu buttons behavior
+ */
 import { events as e } from '../scripts/events.js'
 
 export const fn = (data) =>{

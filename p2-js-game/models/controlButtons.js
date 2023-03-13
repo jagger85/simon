@@ -22,7 +22,7 @@ export const fn = (data) =>{
             break;
 
         case (data = e.SOUND_PRESSED):
-            localStorage.getItem('sound') == 'on' ?
+            localStorage.getItem('sound') == 'ON' ?
             soundButton.children[0].classList.add('sound-active'):
             soundButton.children[0].classList.remove('sound-active');
             break;
