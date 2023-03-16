@@ -32,15 +32,6 @@ main {
   align-items: center;
   flex-direction: column;
 }
-/* .social-container{
-  display: flex;
-  align-items: center;
-}
-.social-logo{
-  width: 4vh;
-  mix-blend-mode: darken;
-  
-} */
 .game-container {
   display: flex;
   flex-direction: column;
