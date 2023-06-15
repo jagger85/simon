@@ -7,21 +7,21 @@
  * It has also some subscribers to whom simon is sending any important event that happens
  */
 
-import { fn as notes } from "../models/notes.js";
-import { dataCenter as data, fn as datacenter } from "../services/dataCenter.js";
-import { events as e } from "./events.js";
-import { fn as display } from "../models/display.js";
-import { fn as keys } from "../models/keys.js";
-import { fn as controlButtons } from "../models/ControlButtons.js";
-import { fn as sound } from "../services/soundService.js";
+import { fn as notes } from '../models/notes.js'
+import { dataCenter as data, fn as datacenter } from '../services/dataCenter.js'
+import { events as e } from './events.js'
+import { fn as display } from '../models/display.js'
+import { fn as keys } from '../models/keys.js'
+import { fn as controlButtons } from '../models/ControlButtons.js'
+import { fn as sound } from '../services/soundService.js'
 
-const observer = createObservable();
-observer.subscribe(display);
-observer.subscribe(notes);
-observer.subscribe(controlButtons);
-observer.subscribe(datacenter);
-observer.subscribe(keys);
-observer.subscribe(sound);
+const observer = createObservable()
+observer.subscribe(display)
+observer.subscribe(notes)
+observer.subscribe(controlButtons)
+observer.subscribe(datacenter)
+observer.subscribe(keys)
+observer.subscribe(sound)
 
 /**
  * Simon states are represented by transitions properties where you can find the avaible methods to execute.
@@ -34,216 +34,218 @@ observer.subscribe(sound);
  */
 
 let simon = {
-  state: "OFF",
-  transitions: {
-    OFF: {
-      switch: function () {
-        simon.changeState("STANDBY");
-        observer.broadcast(e.ON);
-      },
+    state: 'OFF',
+    transitions: {
+        OFF: {
+            switch: function () {
+                simon.changeState('STANDBY')
+                observer.broadcast(e.ON)
+            },
+        },
+        STANDBY: {
+            switch: function () {
+                simon.changeState('OFF')
+                observer.broadcast(e.OFF)
+            },
+            startGame: function () {
+                simon.changeState('DISPLAYING')
+                simon.dispatch('displayPattern')
+            },
+            reset: function () {
+                simon.changeState('RESETING')
+                simon.dispatch('resetValues')
+            },
+        },
+        DISPLAYING: {
+            switch: function () {
+                simon.changeState('OFF')
+                observer.broadcast(e.OFF)
+            },
+            displayPattern: function () {
+                observer.broadcast(e.SEQUENCE_STARTING)
+                let n = 0
+                setTimeout(() => {
+                    step()
+                    function step() {
+                        if (localStorage.getItem('state') == 'OFF') return
+                        pressKey(data.getSequence[n])
+                        setTimeout(() => {
+                            releaseKey(data.getSequence[n])
+                            n++
+                            setTimeout(() => {
+                                data.getSequence[n] != undefined
+                                    ? step()
+                                    : simon.changeState('READING')
+                            }, 100)
+                        }, data.getSpeed * 1000)
+                    }
+                }, 3000)
+            },
+        },
+        READING: {
+            switch: function () {
+                simon.changeState('OFF')
+                observer.broadcast(e.OFF)
+            },
+            readUserInput: function (input) {
+                if (input == data.getSequence[data.getUserSteps]) {
+                    data.addUserStep()
+                    if (data.getSequence[data.getUserSteps] == undefined) {
+                        observer.broadcast(e.LEVEL_UP)
+                        simon.changeState('DISPLAYING')
+                        simon.dispatch('displayPattern')
+                    }
+                } else {
+                    observer.broadcast(e.WRONG_INPUT)
+                    setTimeout(() => {
+                        observer.broadcast(e.GAME_OVER)
+                    }, 2000)
+                    setTimeout(() => {
+                        simon.changeState('STANDBY')
+                    }, 4000)
+                }
+            },
+        },
+        RESETING: {
+            resetValues: function () {
+                observer.broadcast(e.RESET)
+                let pattern = [0, 2, 3, 1, 0, 2, 3, 1, 0]
+                pattern.sort()
+                let n = 0
+                step()
+                function step() {
+                    pressKey(pattern[n])
+                    setTimeout(() => {
+                        releaseKey(pattern[n])
+                        n++
+                        if (pattern[n] != undefined) step()
+                    }, 200)
+                }
+                setTimeout(() => {
+                    simon.changeState('OFF')
+                    simon.dispatch('switch')
+                }, 5000)
+            },
+        },
     },
-    STANDBY: {
-      switch: function () {
-        simon.changeState("OFF");
-        observer.broadcast(e.OFF);
-      },
-      startGame: function () {
-        simon.changeState("DISPLAYING");
-        simon.dispatch("displayPattern");
-      },
-      reset: function () {
-        simon.changeState("RESETING");
-        simon.dispatch("resetValues");
-      },
-    },
-    DISPLAYING: {
-      switch: function () {
-        simon.changeState("OFF");
-        observer.broadcast(e.OFF);
-      },
-      displayPattern: function () {
-        observer.broadcast(e.SEQUENCE_STARTING);
-        let n = 0;
-        setTimeout(() => {
-          step();
-          function step() {
-            if (localStorage.getItem("state") == "OFF") return;
-            pressKey(data.getSequence[n]);
-            setTimeout(() => {
-              releaseKey(data.getSequence[n]);
-              n++;
-              setTimeout(() => {
-                data.getSequence[n] != undefined
-                  ? step()
-                  : simon.changeState("READING");
-              }, 100);
-            }, data.getSpeed * 1000);
-          }
-        }, 3000);
-      },
-    },
-    READING: {
-      switch: function () {
-        simon.changeState("OFF");
-        observer.broadcast(e.OFF);
-      },
-      readUserInput: function (input) {
-        if (input == data.getSequence[data.getUserSteps]) {
-          data.addUserStep();
-          if (data.getSequence[data.getUserSteps] == undefined) {
-            observer.broadcast(e.LEVEL_UP);
-            simon.changeState("DISPLAYING");
-            simon.dispatch("displayPattern");
-          }
-        } else {
-          observer.broadcast(e.WRONG_INPUT);
-          setTimeout(() => {
-            observer.broadcast(e.GAME_OVER);
-          }, 2000);
-          setTimeout(() => {
-            simon.changeState("STANDBY");
-          }, 4000);
-        }
-      },
-    },
-    RESETING: {
-      resetValues: function () {
-        observer.broadcast(e.RESET);
-        let pattern = [0, 2, 3, 1, 0, 2, 3, 1, 0];
-        pattern.sort();
-        let n = 0;
-        step();
-        function step() {
-          pressKey(pattern[n]);
-          setTimeout(() => {
-            releaseKey(pattern[n]);
-            n++;
-            if (pattern[n] != undefined) step();
-          }, 200);
-        }
-        setTimeout(() => {
-          simon.changeState("OFF");
-          simon.dispatch("switch");
-        }, 5000);
-      },
-    },
-  },
-  /**
-   * Responsible for triggering actions, it will only trigger the action if it is avaiable in the current state,
-   * otherwise it will write a message on console.
-   * @param {string} actionName - The action simon has to trigger
-   * @param {Array} args - The arguments passed to the action, arguments should be passed as an Array
-   */
-  dispatch(actionName, ...args) {
-    const actions = this.transitions[this.state];
-    const action = this.transitions[this.state][actionName];
+    /**
+     * Responsible for triggering actions, it will only trigger the action if it is avaiable in the current state,
+     * otherwise it will write a message on console.
+     * @param {string} actionName - The action simon has to trigger
+     * @param {Array} args - The arguments passed to the action, arguments should be passed as an Array
+     */
+    dispatch(actionName, ...args) {
+        const actions = this.transitions[this.state]
+        const action = this.transitions[this.state][actionName]
 
-    if (action) {
-      action.apply(simon, ...args);
-    } else {
-      console.log(
-        actionName + " action not valid for current state =" + this.state
-      );
-    }
-  },
-  /**
-   * Change state is the method responsible for changing the machine state
-   * @param {string} newState - The state that simon will be changed to
-   */
-  changeState(newState) {
-    localStorage.setItem("state", newState);
-    this.state = newState;
-  },
-};
+        if (action) {
+            action.apply(simon, ...args)
+        } else {
+            console.log(
+                actionName +
+                    ' action not valid for current state =' +
+                    this.state
+            )
+        }
+    },
+    /**
+     * Change state is the method responsible for changing the machine state
+     * @param {string} newState - The state that simon will be changed to
+     */
+    changeState(newState) {
+        localStorage.setItem('state', newState)
+        this.state = newState
+    },
+}
 
 function pressKey(key) {
-  switch (key) {
-    case (key = 0):
-      observer.broadcast(e.YELLOW_PRESSED);
-      break;
+    switch (key) {
+        case (key = 0):
+            observer.broadcast(e.YELLOW_PRESSED)
+            break
 
-    case (key = 1):
-      observer.broadcast(e.RED_PRESSED);
-      break;
+        case (key = 1):
+            observer.broadcast(e.RED_PRESSED)
+            break
 
-    case (key = 2):
-      observer.broadcast(e.BLUE_PRESSED);
-      break;
+        case (key = 2):
+            observer.broadcast(e.BLUE_PRESSED)
+            break
 
-    case (key = 3):
-      observer.broadcast(e.GREEN_PRESSED);
-      break;
-  }
+        case (key = 3):
+            observer.broadcast(e.GREEN_PRESSED)
+            break
+    }
 }
 
 function releaseKey(key) {
-  switch (key) {
-    case (key = 0):
-      observer.broadcast(e.YELLOW_RELEASED);
-      break;
+    switch (key) {
+        case (key = 0):
+            observer.broadcast(e.YELLOW_RELEASED)
+            break
 
-    case (key = 1):
-      observer.broadcast(e.RED_RELEASED);
-      break;
+        case (key = 1):
+            observer.broadcast(e.RED_RELEASED)
+            break
 
-    case (key = 2):
-      observer.broadcast(e.BLUE_RELEASED);
-      break;
+        case (key = 2):
+            observer.broadcast(e.BLUE_RELEASED)
+            break
 
-    case (key = 3):
-      observer.broadcast(e.GREEN_RELEASED);
-      break;
-  }
+        case (key = 3):
+            observer.broadcast(e.GREEN_RELEASED)
+            break
+    }
 }
 
 /**
  * Responsible for observing user inputs
  * @module scripts/simon.js
- * @param {string} event - A game event. 
+ * @param {string} event - A game event.
  */
 export const fn = (data) => {
-  switch (data) {
-    case e.YELLOW_PRESSED:
-      simon.dispatch("readUserInput", [0]);
-      break;
-    case e.RED_PRESSED:
-      simon.dispatch("readUserInput", [1]);
-      break;
-    case e.BLUE_PRESSED:
-      simon.dispatch("readUserInput", [2]);
-      break;
-    case e.GREEN_PRESSED:
-      simon.dispatch("readUserInput", [3]);
-      break;
-    case e.POWER_PRESSED:
-      simon.dispatch("switch");
-      break;
-    case e.PLAY_PRESSED:
-      simon.dispatch("startGame");
-      break;
-    case e.USER_RESET:
-      simon.dispatch("reset");
-    default:
-      break;
-  }
-};
+    switch (data) {
+        case e.YELLOW_PRESSED:
+            simon.dispatch('readUserInput', [0])
+            break
+        case e.RED_PRESSED:
+            simon.dispatch('readUserInput', [1])
+            break
+        case e.BLUE_PRESSED:
+            simon.dispatch('readUserInput', [2])
+            break
+        case e.GREEN_PRESSED:
+            simon.dispatch('readUserInput', [3])
+            break
+        case e.POWER_PRESSED:
+            simon.dispatch('switch')
+            break
+        case e.PLAY_PRESSED:
+            simon.dispatch('startGame')
+            break
+        case e.USER_RESET:
+            simon.dispatch('reset')
+        default:
+            break
+    }
+}
 
 function createObservable() {
-  return {
-    subscribers: [],
+    return {
+        subscribers: [],
 
-    subscribe(fn) {
-      this.subscribers.push(fn);
-    },
+        subscribe(fn) {
+            this.subscribers.push(fn)
+        },
 
-    unsuscribe(fn) {
-      this.suscribers = this.suscribers.filter((item) => item !== fn);
-    },
+        unsuscribe(fn) {
+            this.suscribers = this.suscribers.filter((item) => item !== fn)
+        },
 
-    broadcast(data) {
-      for (let i = 0; i < this.subscribers.length; i++) {
-        this.subscribers[i](data);
-      }
-    },
-  };
+        broadcast(data) {
+            for (let i = 0; i < this.subscribers.length; i++) {
+                this.subscribers[i](data)
+            }
+        },
+    }
 }
